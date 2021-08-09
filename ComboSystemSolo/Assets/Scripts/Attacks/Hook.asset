@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: Hook
   m_EditorClassIdentifier: 
   enabled: 1
-  timesCanHit: 1
-  name: Jab
+  timesCanHit: 2
+  name: Hook
   startsACombo: 1
   hitboxActiveFrame: 20
   hitboxEndFrame: 70
   hitStun: 30
-  playerHitLag: 3
+  playerHitLag: 40
   damage: 4
   attackInputName:
   - Heavy
   prevAttack: {fileID: 0}
-  attackAnimation: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: 61cbb16c1108e8c4cba4bb40fc86c884, type: 2}
   attachedEffects:
   - {fileID: 11400000, guid: dff25b50eca757e4bb6b2bb648e8eaec, type: 2}
-  frame: 0
   hit: 0

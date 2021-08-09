@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class PlayerMovement : CharacterComponent
+public class PlayerMovement : PlayerComponent
 {
     public Vector2 MovementDirection;
 
@@ -45,13 +46,19 @@ public class PlayerMovement : CharacterComponent
 
     private bool CanMove()
     {
-        return (grounded);
+        return (state.currentCombatState == CharacterState.CombatState.Neutral && state.currentMovementState != CharacterState.MovementState.Disabled &&
+                state.currentMovementState != CharacterState.MovementState.Locked && grounded);
     }
 
     private void TryMove()
     {
         if (CanMove() && MovementDirection != Vector2.zero)
             DoMovement(MovementDirection);
+        else if (MovementDirection == Vector2.zero)
+        {
+            MyBody.velocity = new Vector2(0, MyBody.velocity.y);
+                cAnimation.OnStopMove();
+        }
     }
 
     public void Jump()
@@ -68,11 +75,10 @@ public class PlayerMovement : CharacterComponent
     private void DoMovement(Vector2 direction)
     {
         var myBody = MyBody;
-        if (direction.x != 0)
-            myBody.velocity = new Vector2(moveSpeed * direction.x * movementMod, 
-                myBody.velocity.y);
-        else
-            myBody.velocity = new Vector2(0, myBody.velocity.y);
+        if (direction.x == 0) return;
+        myBody.velocity = new Vector2(moveSpeed * direction.x * movementMod,
+            myBody.velocity.y);
+        cAnimation.OnMove();
     }
 
     private void DoJump()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectTag: KB
   effectDuration: 0.5
-  timer: 2.3866973
+  timer: 0.02
   eDamage: 0
   damageInstant: 1
   knockbackDirection: {x: 3, y: 0}

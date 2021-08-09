@@ -45,13 +45,13 @@ public class CharacterState : MonoBehaviour
       
    }
 
-   public MovementState currentMovementState { get; private set; }
+   public MovementState currentMovementState;
    public void SetMovementState(MovementState desiredState)
    {
       currentMovementState = desiredState;
    }
 
-   public CombatState currentCombatState { get; private set; }
+   public CombatState currentCombatState;
    public void SetCombatState(CombatState desiredState)
    {
       currentCombatState = desiredState;

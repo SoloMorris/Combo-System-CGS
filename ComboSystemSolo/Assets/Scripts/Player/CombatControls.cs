@@ -31,7 +31,6 @@ namespace Player
         private void TryExecuteFromQueue()
         {
             if (actionQueue.Queue.Count <= 0) return;
-            print("Stuff is in queue: " + actionQueue.Queue[0].action.inputContext.action.name);
             if (TryExecuteInput(actionQueue.Queue[0].action))
                 actionQueue.Queue.Remove(actionQueue.Queue[0]);
         }
@@ -54,7 +53,7 @@ namespace Player
         /// <returns>True if successfully executes, false if it fails.</returns>
         private bool TryExecuteInput(ActionInput _input)
         {
-            return Attacks.TryStartAttack(_input);
+            return cAttacks.TryStartAttack(_input);
         }
 
         private void UpdateActionQueue()

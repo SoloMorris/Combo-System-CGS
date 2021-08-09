@@ -20,12 +20,12 @@ public class GroundDetection : PlayerComponent
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Floor")) return;
-            Movement.grounded = true;
+            cMovement.grounded = true;
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Floor")) return;
-        Movement.grounded = false;
+        cMovement.grounded = false;
     }
 
     private void Update()

@@ -19,6 +19,11 @@ public class PlayerAttacks : PlayerComponent
     /// To store directional inputs for an attack.
     /// </summary>
     private ActionQueue storedInputs = new ActionQueue();
+
+    /// <summary>
+    /// Sets to true every frame, allows delay of hitlag enumerator 
+    /// </summary>
+    private bool hitLagCheck =false;
     private void Start()
     {
         AssignComponents();
@@ -28,27 +33,62 @@ public class PlayerAttacks : PlayerComponent
     void Update()
     {
         storedInputs.UpdateQueue();
-        if (activeAttack != null)
-        {
-            activeAttack.Update();
-        }
-        // TODO Find out why the system is not saving the input state for the fightmode function .
     }
 
+    #region Attack Delegates
+    
     private void OnAttackHit()
     {
         state.SetCombatState(CharacterState.CombatState.Hitlag);
+        if (activeAttack.playerHitLag > 0) StartCoroutine(FreezeHitlag());
         print("mom i'm hitting a thing");
     }
-    private void OnAttackEnd()
+
+    public IEnumerator FreezeHitlag()
     {
-        hitboxControl.Deactivate();
+        float counter = 0f;
+        while (counter < activeAttack.playerHitLag)
+        {
+            if (activeAttack == null) yield break;
+            GetComponent<Animator>().enabled = false;
+            counter++;
+            yield return 0;
+        }
+        GetComponent<Animator>().enabled = true;
+    }
+    #endregion
+
+    #region Animation Events
+    public void OnAttackEnd(Attack atk)
+    {
+        if (atk.name != activeAttack.name) return;
+        print("Attack "+activeAttack.name);
         state.SetCombatState(CharacterState.CombatState.Neutral);
-        activeAttack.Reset();
         activeAttack.attackHitEvent -= OnAttackHit;
-        activeAttack.attackEndEvent -= OnAttackEnd;
+        activeAttack.active = false;
         activeAttack = null;
     }
+    
+    public void ActivateHitbox()
+    {
+        if (IsAttackActive())
+            cHitBox.Activate(activeAttack);
+    }
+
+    public void DeactivateHitbox()
+    {
+        if (IsAttackActive())
+            cHitBox.Deactivate();
+    }
+
+
+    public void EnterRecovery()
+    {
+        if (IsAttackActive())
+        state.SetCombatState(CharacterState.CombatState.Recovery);
+    }
+
+    #endregion
     public bool TryStartAttack(ActionInput atk)
     {
         if (!CheckStatesAllowAction()) return false;
@@ -60,21 +100,25 @@ public class PlayerAttacks : PlayerComponent
             
     }
 
+    private bool IsAttackActive()
+    {
+        return activeAttack != null && activeAttack.active;
+    }
     private void ExecuteAttackAction(ActionInput atk)
     {
         var attack = FindAttack();
         if (attack == null)
         {
-            print("couldn't find attack ");
             return;
         }
-        if (activeAttack != null) OnAttackEnd();
+        // If there is an attack being used, end it first
+        if (activeAttack != null) OnAttackEnd(activeAttack);
         activeAttack = attack;
         activeAttack.attackHitEvent += OnAttackHit;
-        activeAttack.attackEndEvent += OnAttackEnd;
-        hitboxControl.Activate(activeAttack);
         state.SetCombatState(CharacterState.CombatState.Attacking);
-        
+        activeAttack.active = true;
+        cAnimation.PlayAnimation(activeAttack.attackAnimation);
+
         Attack FindAttack()
         {
             // Loop through the movelist and find a match.
@@ -103,6 +147,7 @@ public class PlayerAttacks : PlayerComponent
                         return move;
                 } //Return an attack that continues a combo.
                 else if (move.attackInputName.Count == 1 && move.attackInputName[0] == atk.inputContext.action.name
+                                                         && move.prevAttack != null
                                                          && move.prevAttack.name == activeAttack.name)
                     return move;
 

@@ -9,27 +9,27 @@ namespace Player
     
         public void OnMovement(InputAction.CallbackContext context)
         {
-            Movement.UpdateDirection(context.ReadValue<Vector2>());
+            cMovement.UpdateDirection(context.ReadValue<Vector2>());
         }
         public void OnJump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            Movement.Jump();
+            cMovement.Jump();
         }
         public void OnLight(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            CombatControls.ConvertInputAndExecute(context);
+            cCombatControls.ConvertInputAndExecute(context);
         }
         public void OnHeavy(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            CombatControls.ConvertInputAndExecute(context);
+            cCombatControls.ConvertInputAndExecute(context);
         }
         public void OnLock(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            Movement.ZeroMovement();
+            cMovement.ZeroMovement();
         
         }
         #endregion
@@ -42,7 +42,7 @@ namespace Player
         public void OnLockJump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            Movement.Jump();
+            cMovement.Jump();
         }
         public void OnLockLight(InputAction.CallbackContext context)
         {
@@ -56,7 +56,7 @@ namespace Player
         public void OnUnlock(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            Movement.ZeroMovement();
+            cMovement.ZeroMovement();
         
         }
         #endregion

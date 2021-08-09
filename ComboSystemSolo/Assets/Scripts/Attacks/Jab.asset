@@ -18,14 +18,14 @@ MonoBehaviour:
   startsACombo: 1
   hitboxActiveFrame: 2
   hitboxEndFrame: 60
-  hitStun: 30
-  playerHitLag: 3
+  hitStun: 60
+  playerHitLag: 10
   damage: 1
   attackInputName:
   - Light
   prevAttack: {fileID: 0}
-  attackAnimation: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: d4fdf011a5687c7469794f6e21131d8c, type: 2}
   attachedEffects:
   - {fileID: 11400000, guid: 99b77a116efa66141aff16a8a3778ecd, type: 2}
-  frame: 0
   hit: 0
+  active: 0
