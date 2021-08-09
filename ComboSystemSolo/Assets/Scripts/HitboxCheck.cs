@@ -26,7 +26,11 @@ public class HitboxCheck : PlayerComponent
                 enemy.lastHitBy.name == attack.name ||
                 timesHit >= attack.timesCanHit)
                 return;
-                
+
+            foreach (var fx in attack.attachedEffects)
+            {
+                fx.SetupCustomEffect(combatant, enemy);
+            }
             attack.attackHitEvent?.Invoke();
             enemy.ReceiveAttack(attack);
             timesHit++;

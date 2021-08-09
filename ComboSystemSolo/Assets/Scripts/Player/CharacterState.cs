@@ -12,9 +12,10 @@ public class CharacterState : MonoBehaviour
    {
       Neutral,
       Moving,
-      Jumping,
+      Airborne,
       Disabled,
-      Locked
+      Locked,
+      Free
    }
 
    /// <summary>
@@ -46,16 +47,9 @@ public class CharacterState : MonoBehaviour
    }
 
    public MovementState currentMovementState;
-   public void SetMovementState(MovementState desiredState)
-   {
-      currentMovementState = desiredState;
-   }
 
    public CombatState currentCombatState;
-   public void SetCombatState(CombatState desiredState)
-   {
-      currentCombatState = desiredState;
-   }
+
    
    
 }

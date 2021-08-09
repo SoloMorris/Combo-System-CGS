@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d810ccb16178c64fa3d9218b9ddba59, type: 3}
-  m_Name: Jab
+  m_Name: AirStomp
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: Jab
+  name: AirStomp
   startsACombo: 1
-  aerialMove: 0
-  playerHitLag: 25
-  damage: 1
+  aerialMove: 1
+  playerHitLag: 0
+  damage: 3
   attackInputName:
-  - Light
+  - Heavy
   prevAttack: {fileID: 0}
-  attackAnimation: {fileID: 7400000, guid: d4fdf011a5687c7469794f6e21131d8c, type: 2}
+  attackAnimation: {fileID: 7400000, guid: a06e0c7c81cddb34885f8bf6b55dfa71, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: 2d713bcdcd25afa499423d70bbcfcb0f, type: 2}
-  - {fileID: 11400000, guid: 99b77a116efa66141aff16a8a3778ecd, type: 2}
+  - {fileID: 11400000, guid: ca228303ab9aeb143adededd03c021c3, type: 2}
+  - {fileID: 11400000, guid: 48823ca22ec38f84d8dfc0144e523d1b, type: 2}
   hit: 0
   active: 0

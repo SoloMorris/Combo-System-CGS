@@ -42,7 +42,6 @@ namespace Player
         public void OnLockJump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            cMovement.Jump();
         }
         public void OnLockLight(InputAction.CallbackContext context)
         {

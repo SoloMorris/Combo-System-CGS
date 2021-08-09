@@ -739,19 +739,19 @@ TextureImporter:
     second: SpriteSheetRedone_275
   - first:
       213: -6902495574948652748
-    second: SpriteSheetRedone_276
+    second: AirKick_1
   - first:
       213: 103320658265538118
-    second: SpriteSheetRedone_277
+    second: AirKick_2
   - first:
       213: 3545661375235117143
-    second: SpriteSheetRedone_278
+    second: AirKick_4
   - first:
       213: 5269332740733987556
-    second: SpriteSheetRedone_279
+    second: AirKick_5
   - first:
       213: 9040497699985749410
-    second: SpriteSheetRedone_280
+    second: AirKick_6
   - first:
       213: 5774027881957038682
     second: SpriteSheetRedone_281
@@ -871,34 +871,34 @@ TextureImporter:
     second: SpriteSheetRedone_319
   - first:
       213: -8733091996648277897
-    second: SpriteSheetRedone_320
+    second: SuperAirStomp_1
   - first:
       213: 7745727111888855998
-    second: SpriteSheetRedone_321
+    second: SuperAirStomp_2
   - first:
       213: 7420686022006420218
-    second: SpriteSheetRedone_322
+    second: SuperAirStomp_3
   - first:
       213: -3588959760574605649
-    second: SpriteSheetRedone_323
+    second: SuperAirStomp_4
   - first:
       213: -6480177543968777644
-    second: SpriteSheetRedone_324
+    second: SuperAirStomp_5
   - first:
       213: -8266056396982849162
-    second: SpriteSheetRedone_325
+    second: SuperAirStomp_6
   - first:
       213: -493999643190964479
-    second: SpriteSheetRedone_326
+    second: SuperAirStomp_7
   - first:
       213: -3138851916548054398
-    second: SpriteSheetRedone_327
+    second: AirStomp_1
   - first:
       213: 3560545494412774987
-    second: SpriteSheetRedone_328
+    second: AirStomp_3
   - first:
       213: 1100241148305309557
-    second: SpriteSheetRedone_329
+    second: AirStomp_4
   - first:
       213: -1996565465488796679
     second: SpriteSheetRedone_330
@@ -1873,10 +1873,10 @@ TextureImporter:
     second: SpriteSheetRedone_622
   - first:
       213: 386187277944585201
-    second: SpriteSheetRedone_623
+    second: AirKick_3
   - first:
       213: -590841831947826258
-    second: SpriteSheetRedone_624
+    second: AirKick_7
   - first:
       213: 5202346143574369879
     second: SpriteSheetRedone_625
@@ -1933,13 +1933,13 @@ TextureImporter:
     second: SpriteSheetRedone_642
   - first:
       213: 6261795219928183749
-    second: SpriteSheetRedone_643
+    second: AirStomp_2
   - first:
       213: 5082254490943320763
-    second: SpriteSheetRedone_644
+    second: AirStomp_5
   - first:
       213: 2182217416248002439
-    second: SpriteSheetRedone_645
+    second: AirStomp_6
   - first:
       213: -2086964100189398143
     second: SpriteSheetRedone_646
@@ -2746,8 +2746,8 @@ TextureImporter:
       name: Jump_1
       rect:
         serializedVersion: 2
-        x: 13
-        y: 3987
+        x: 12
+        y: 3988
         width: 47
         height: 46
       alignment: 7
@@ -2872,8 +2872,8 @@ TextureImporter:
       name: Jump_9
       rect:
         serializedVersion: 2
-        x: 362
-        y: 3999
+        x: 361
+        y: 4000
         width: 35
         height: 59
       alignment: 7
@@ -7279,7 +7279,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_276
+      name: AirKick_1
       rect:
         serializedVersion: 2
         x: 11
@@ -7300,7 +7300,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_277
+      name: AirKick_2
       rect:
         serializedVersion: 2
         x: 47
@@ -7321,7 +7321,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_278
+      name: AirKick_4
       rect:
         serializedVersion: 2
         x: 148
@@ -7342,7 +7342,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_279
+      name: AirKick_5
       rect:
         serializedVersion: 2
         x: 206
@@ -7363,7 +7363,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_280
+      name: AirKick_6
       rect:
         serializedVersion: 2
         x: 264
@@ -8203,15 +8203,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_320
+      name: SuperAirStomp_1
       rect:
         serializedVersion: 2
-        x: 11
-        y: 967
-        width: 8
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 8
+        y: 952
+        width: 46
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -8224,12 +8224,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_321
+      name: SuperAirStomp_2
       rect:
         serializedVersion: 2
-        x: 63
+        x: 57
         y: 964
-        width: 40
+        width: 46
         height: 54
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -8245,7 +8245,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_322
+      name: SuperAirStomp_3
       rect:
         serializedVersion: 2
         x: 107
@@ -8266,7 +8266,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_323
+      name: SuperAirStomp_4
       rect:
         serializedVersion: 2
         x: 175
@@ -8287,7 +8287,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_324
+      name: SuperAirStomp_5
       rect:
         serializedVersion: 2
         x: 232
@@ -8308,7 +8308,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_325
+      name: SuperAirStomp_6
       rect:
         serializedVersion: 2
         x: 289
@@ -8329,7 +8329,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_326
+      name: SuperAirStomp_7
       rect:
         serializedVersion: 2
         x: 348
@@ -8350,7 +8350,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_327
+      name: AirStomp_1
       rect:
         serializedVersion: 2
         x: 12
@@ -8371,7 +8371,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_328
+      name: AirStomp_3
       rect:
         serializedVersion: 2
         x: 93
@@ -8392,7 +8392,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_329
+      name: AirStomp_4
       rect:
         serializedVersion: 2
         x: 175
@@ -12974,7 +12974,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 439
-        y: 3992
+        y: 3991
         width: 36
         height: 66
       alignment: 7
@@ -15217,7 +15217,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_623
+      name: AirKick_3
       rect:
         serializedVersion: 2
         x: 85
@@ -15238,7 +15238,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_624
+      name: AirKick_7
       rect:
         serializedVersion: 2
         x: 322
@@ -15574,70 +15574,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_640
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 960
-        width: 10
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 165c9237840f29ca0800000000000000
-      internalID: -6011478358625761951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_641
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 951
-        width: 28
-        height: 17
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44b2622085e768c00800000000000000
-      internalID: 902547691792640836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_642
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 967
-        width: 6
-        height: 4
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5e8e4ca5c4bb19a0800000000000000
-      internalID: -6261212095836156323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_643
+      name: AirStomp_2
       rect:
         serializedVersion: 2
         x: 51
@@ -15658,7 +15595,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_644
+      name: AirStomp_5
       rect:
         serializedVersion: 2
         x: 229
@@ -15679,7 +15616,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_645
+      name: AirStomp_6
       rect:
         serializedVersion: 2
         x: 283

@@ -10,6 +10,7 @@ namespace Player
         public PlayerAnimation cAnimation;
         public CombatControls cCombatControls;
         public HitboxCheck cHitBox;
+        public PlayerCombatant combatant;
 
     
         protected override void AssignComponents()
@@ -19,8 +20,21 @@ namespace Player
             cAnimation = GetComponent<PlayerAnimation>();
             cCombatControls = GetComponent<CombatControls>();
             cHitBox = GetComponentInChildren<HitboxCheck>();
+            combatant = GetComponent<PlayerCombatant>();
             state = GetComponent<CharacterState>();
             MyBody = GetComponent<Rigidbody2D>();
+        }
+        
+        protected void AssignComponentsInParents()
+        {
+            cAttacks = GetComponentInParent<PlayerAttacks>();
+            cMovement = GetComponentInParent<PlayerMovement>();
+            cAnimation = GetComponentInParent<PlayerAnimation>();
+            cCombatControls = GetComponentInParent<CombatControls>();
+            cHitBox = GetComponentInParent<HitboxCheck>();
+            combatant = GetComponentInParent<PlayerCombatant>();
+            state = GetComponentInParent<CharacterState>();
+            MyBody = GetComponentInParent<Rigidbody2D>();
         }
         
     }

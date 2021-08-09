@@ -16,10 +16,8 @@ MonoBehaviour:
   timesCanHit: 1
   name: Uppercut
   startsACombo: 0
-  hitboxActiveFrame: 1
-  hitboxEndFrame: 15
-  hitStun: 60
-  playerHitLag: 60
+  aerialMove: 0
+  playerHitLag: 30
   damage: 3
   attackInputName:
   - Heavy
@@ -27,4 +25,8 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: 8f50e0e1c93aeb34bad36da2a719fb74, type: 2}
   attachedEffects:
   - {fileID: 11400000, guid: 7a849c64f96ccd94fbb740da67c6ae03, type: 2}
+  - {fileID: 11400000, guid: 84b984abfa77e0f4993db79fa7f66d1b, type: 2}
+  - {fileID: 11400000, guid: 278bbbed454c16a47bb6db034652f270, type: 2}
+  - {fileID: 11400000, guid: 278bbbed454c16a47bb6db034652f270, type: 2}
   hit: 0
+  active: 0

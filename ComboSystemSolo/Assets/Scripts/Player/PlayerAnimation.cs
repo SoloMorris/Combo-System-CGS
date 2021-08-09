@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 
 public class PlayerAnimation : PlayerComponent
 {
-    private Animator animator;
+    public Animator animator;
     
     // Animator parameters
     private static readonly int Moving = Animator.StringToHash("Moving");

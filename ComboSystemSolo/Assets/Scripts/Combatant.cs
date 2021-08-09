@@ -30,10 +30,18 @@ public class Combatant : CharacterComponent
     public virtual void ReceiveAttack(Attack atk)
     {
         health -= atk.damage;
-            
-        foreach (Effect fx in atk.attachedEffects)
-            underEffects.Add(fx);
+        ApplyEffectsFromAttack(atk);
         lastHitBy = atk;
+    }
+
+    public virtual void ApplyEffectsFromAttack(Attack atk)
+    {
+        foreach (Effect fx in atk.attachedEffects)
+            if (CompareTag(fx.targetTag))
+            {
+                fx.Apply();
+                underEffects.Add(fx);
+            }
     }
     protected virtual void UpdateState()
     {
@@ -56,21 +64,36 @@ public class Combatant : CharacterComponent
         {
             foreach (var fx in underEffects)
             {
-                if (fx.damageInstant)
-                    health -= fx.eDamage;
-                else
-                    health -= (fx.eDamage / (int)fx.effectDuration);
+                if (fx.eDamage > 0)
+                    ApplyDamage();
 
-                if (fx.knockbackInstant)
-                    TryApplyVelocity(fx.knockbackDirection * fx.knockbackDist);
-                else
-                    TryApplyVelocity(fx.knockbackDirection * (fx.knockbackDist * fx.effectDuration));
+                if (fx.knockbackDirection != Vector2.zero)
+                    ApplyKnockback();
                 
                 if (fx.forceState)
-                    state.SetCombatState(fx.ForcedState);
+                    SetCombatState(fx.ForcedState);
+                if (fx.forceMovementState)
+                    SetMovementState(fx.ForcedMovementState);
 
                 fx.TickEffect();
-                print("I am under effect aaaaaa");
+
+                void ApplyDamage()
+                {
+                    if (fx.damageInstant)
+                    {
+                        health -= fx.eDamage;
+                        fx.eDamage = 0;
+                    }
+                    else 
+                        health -= (fx.eDamage / (int)fx.effectDuration);
+                }
+                void ApplyKnockback()
+                {
+                    if (fx.knockbackInstant)
+                        TryApplyVelocity(fx.knockbackDirection * fx.knockbackDist);
+                    else
+                        TryApplyVelocity(fx.knockbackDirection * (fx.knockbackDist * fx.effectDuration));
+                }
             }
         }
         void CheckEffectDuration()
@@ -85,7 +108,7 @@ public class Combatant : CharacterComponent
                     {
                         check = false;
                         if (effect.forceState)
-                            state.SetCombatState(CharacterState.CombatState.Neutral);
+                            SetCombatState(CharacterState.CombatState.Neutral);
                         effect.Reset();
                         underEffects.Remove(effect);
                         break;

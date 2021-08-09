@@ -32,6 +32,15 @@ public class CharacterComponent : MonoBehaviour
     {
         return state.currentCombatState;
     }
+    
+    public void SetMovementState(CharacterState.MovementState nState)
+    {
+        state.currentMovementState = nState;
+    }
+    public void SetCombatState(CharacterState.CombatState nState)
+    {
+        state.currentCombatState =nState ;
+    }
 }
 
 

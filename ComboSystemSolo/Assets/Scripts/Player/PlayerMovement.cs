@@ -17,7 +17,7 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] public float movementMod = 1;
     
     // Flags
-    public bool canJump { get; private set; } = true;
+    public bool canJump = true;
 
     private void Start()
     {
@@ -26,14 +26,10 @@ public class PlayerMovement : PlayerComponent
 
     void Update()
     {
+        cAnimation.animator.SetBool("Grounded", grounded);
         TryMove();
-    }
-
-    //  Sets grounded upon touching the ground
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor"))
-            grounded = true;
+        cAnimation.animator.SetBool("PrevGroundedState", grounded);
+        if (!grounded) SetMovementState(CharacterState.MovementState.Airborne);
     }
 
 
@@ -47,7 +43,12 @@ public class PlayerMovement : PlayerComponent
     private bool CanMove()
     {
         return (state.currentCombatState == CharacterState.CombatState.Neutral && state.currentMovementState != CharacterState.MovementState.Disabled &&
-                state.currentMovementState != CharacterState.MovementState.Locked && grounded);
+                state.currentMovementState != CharacterState.MovementState.Locked && grounded || state.currentMovementState == CharacterState.MovementState.Free);
+    }
+
+    public bool CanJump()
+    {
+        return (CanMove() && state.currentMovementState != CharacterState.MovementState.Airborne);
     }
 
     private void TryMove()
@@ -63,7 +64,7 @@ public class PlayerMovement : PlayerComponent
 
     public void Jump()
     {
-        if (canJump && grounded)
+        if (CanJump())
             DoJump();
     }
 
@@ -83,8 +84,19 @@ public class PlayerMovement : PlayerComponent
 
     private void DoJump()
     {
+        SetMovementState(CharacterState.MovementState.Airborne);
+        cAnimation.animator.SetTrigger("Jump");
+    }
+
+    public void AnimJumpLaunch()
+    {
         groundDetection.LeaveGroundForTime(15f);
-        MyBody.velocity = new Vector3(MyBody.velocity.x, jumpHeight, 500f);
+        MyBody.velocity = new Vector2(MyBody.velocity.x, jumpHeight);
+    }
+
+    public void AnimTouchGround()
+    {
+        state.currentMovementState = CharacterState.MovementState.Neutral;
     }
 
     public void ZeroMovement()

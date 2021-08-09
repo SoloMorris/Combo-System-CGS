@@ -39,7 +39,9 @@ public class PlayerAttacks : PlayerComponent
     
     private void OnAttackHit()
     {
-        state.SetCombatState(CharacterState.CombatState.Hitlag);
+        if (!IsAttackActive()) return;
+        SetCombatState(CharacterState.CombatState.Hitlag);
+        activeAttack.hit++;
         if (activeAttack.playerHitLag > 0) StartCoroutine(FreezeHitlag());
         print("mom i'm hitting a thing");
     }
@@ -54,6 +56,7 @@ public class PlayerAttacks : PlayerComponent
             counter++;
             yield return 0;
         }
+        SetCombatState(CharacterState.CombatState.Attacking);
         GetComponent<Animator>().enabled = true;
     }
     #endregion
@@ -61,14 +64,21 @@ public class PlayerAttacks : PlayerComponent
     #region Animation Events
     public void OnAttackEnd(Attack atk)
     {
-        if (atk.name != activeAttack.name) return;
+        if (activeAttack == null || atk.name != activeAttack.name) return;
         print("Attack "+activeAttack.name);
-        state.SetCombatState(CharacterState.CombatState.Neutral);
+        SetCombatState(CharacterState.CombatState.Neutral);
+        cHitBox.Deactivate();
         activeAttack.attackHitEvent -= OnAttackHit;
         activeAttack.active = false;
+        activeAttack.hit = 0;
         activeAttack = null;
     }
-    
+
+    public void TryApplySelfEffect()
+    {
+        if (IsAttackActive())
+            combatant.ApplyEffectsFromAttack(activeAttack);
+    }
     public void ActivateHitbox()
     {
         if (IsAttackActive())
@@ -82,10 +92,15 @@ public class PlayerAttacks : PlayerComponent
     }
 
 
+    public void CheckAnimationIsCleared()
+    {
+        if (activeAttack != null)
+            OnAttackEnd(activeAttack);
+    }
     public void EnterRecovery()
     {
         if (IsAttackActive())
-        state.SetCombatState(CharacterState.CombatState.Recovery);
+        SetCombatState(CharacterState.CombatState.Recovery);
     }
 
     #endregion
@@ -98,6 +113,11 @@ public class PlayerAttacks : PlayerComponent
     private void HandleFightMode()
     {
             
+    }
+
+    public Attack GetActiveAttack()
+    {
+        return activeAttack;
     }
 
     private bool IsAttackActive()
@@ -115,8 +135,13 @@ public class PlayerAttacks : PlayerComponent
         if (activeAttack != null) OnAttackEnd(activeAttack);
         activeAttack = attack;
         activeAttack.attackHitEvent += OnAttackHit;
-        state.SetCombatState(CharacterState.CombatState.Attacking);
+        SetCombatState(CharacterState.CombatState.Attacking);
         activeAttack.active = true;
+        foreach (var fx in activeAttack.attachedEffects)
+        {
+            if (fx.customEffect != null)
+                fx.SetupCustomEffect(combatant, null);
+        }
         cAnimation.PlayAnimation(activeAttack.attackAnimation);
 
         Attack FindAttack()
@@ -143,12 +168,13 @@ public class PlayerAttacks : PlayerComponent
                 {
                     // Return an attack that starts a combo.
                     if (move.attackInputName.Count == 1 && move.attackInputName[0] == atk.inputContext.action.name
-                                                        && move.startsACombo)
+                                                        && move.startsACombo && move.aerialMove != cMovement.grounded)
                         return move;
                 } //Return an attack that continues a combo.
                 else if (move.attackInputName.Count == 1 && move.attackInputName[0] == atk.inputContext.action.name
                                                          && move.prevAttack != null
-                                                         && move.prevAttack.name == activeAttack.name)
+                                                         && move.prevAttack.name == activeAttack.name
+                                                         && move.aerialMove != cMovement.grounded)
                     return move;
 
                 bool TryFindDirectionalInputs()

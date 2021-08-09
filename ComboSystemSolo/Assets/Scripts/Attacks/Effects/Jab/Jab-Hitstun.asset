@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3a2a58a3636554981ef8e63788ba45, type: 3}
+  m_Name: Jab-Hitstun
+  m_EditorClassIdentifier: 
+  effectTag: Stun
+  effectDuration: 0.25
+  timer: 0
+  targetTag: Enemy
+  applyCondition: 0
+  attackMustHit: 0
+  howManyTimes: 0
+  eDamage: 0
+  damageInstant: 0
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDist: 0
+  knockbackInstant: 0
+  forceState: 1
+  ForcedState: 3
+  timesCanBeApplied: 1
+  timesApplied: 0
