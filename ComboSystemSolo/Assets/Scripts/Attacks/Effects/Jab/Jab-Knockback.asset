@@ -17,6 +17,7 @@ MonoBehaviour:
   timer: 0
   targetTag: Enemy
   applyCondition: 0
+  endsAttackEarly: 0
   attackMustHit: 0
   howManyTimes: 0
   eDamage: 0
@@ -24,7 +25,10 @@ MonoBehaviour:
   knockbackDirection: {x: 1, y: 0}
   knockbackDist: 1
   knockbackInstant: 1
-  forceState: 1
+  forceState: 0
   ForcedState: 3
+  forceMovementState: 0
+  ForcedMovementState: 0
+  returnAfterEnd: 0
   timesCanBeApplied: 1
   timesApplied: 0

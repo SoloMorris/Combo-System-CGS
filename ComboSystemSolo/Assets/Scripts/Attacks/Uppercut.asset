@@ -17,7 +17,7 @@ MonoBehaviour:
   name: Uppercut
   startsACombo: 0
   aerialMove: 0
-  playerHitLag: 30
+  playerHitLag: 15
   damage: 3
   attackInputName:
   - Heavy
@@ -27,6 +27,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a849c64f96ccd94fbb740da67c6ae03, type: 2}
   - {fileID: 11400000, guid: 84b984abfa77e0f4993db79fa7f66d1b, type: 2}
   - {fileID: 11400000, guid: 278bbbed454c16a47bb6db034652f270, type: 2}
-  - {fileID: 11400000, guid: 278bbbed454c16a47bb6db034652f270, type: 2}
+  - {fileID: 11400000, guid: 6524dc0dd4ba4fd4babcad511e464759, type: 2}
   hit: 0
   active: 0

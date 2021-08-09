@@ -17,7 +17,7 @@ MonoBehaviour:
   name: Jab
   startsACombo: 1
   aerialMove: 0
-  playerHitLag: 25
+  playerHitLag: 5
   damage: 1
   attackInputName:
   - Light

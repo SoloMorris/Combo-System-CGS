@@ -10,8 +10,8 @@ public class Combatant : CharacterComponent
     public Attack lastHitBy;
     public List<Effect> underEffects = new List<Effect>();
     
-    private Vector2 storedVelocity; //Velocity stores when the character is in hitstun. Applies when they exit hitstun.
-    private bool storageActive = false;
+    protected Vector2 storedVelocity; //Velocity stores when the character is in hitstun. Applies when they exit hitstun.
+    protected bool storageActive = false;
     public CharacterState.CombatState pGetCombatState()
     {
         return state.currentCombatState;
@@ -96,33 +96,36 @@ public class Combatant : CharacterComponent
                 }
             }
         }
-        void CheckEffectDuration()
-        {
-            var check = true;
-            do
-            {
-                check = true;
-                foreach (var effect in underEffects)
-                {
-                    if (effect.timer >= effect.effectDuration)
-                    {
-                        check = false;
-                        if (effect.forceState)
-                            SetCombatState(CharacterState.CombatState.Neutral);
-                        effect.Reset();
-                        underEffects.Remove(effect);
-                        break;
-                    }
-                }
-            } while (!check);
-        }
+       
     }
 
+    protected virtual  void CheckEffectDuration()
+    {
+        var check = true;
+        do
+        {
+            check = true;
+            foreach (var effect in underEffects)
+            {
+                if (effect.timer >= effect.effectDuration)
+                {
+                    check = false;
+                    if (effect.forceState && effect.returnAfterEnd)
+                        SetCombatState(CharacterState.CombatState.Neutral);
+                    if (effect.forceMovementState && effect.returnAfterEnd)
+                        SetMovementState(CharacterState.MovementState.Neutral);
+                    effect.Reset();
+                    underEffects.Remove(effect);
+                    break;
+                }
+            }
+        } while (!check);
+    }
     /// <summary>
     /// Check if the combatant is able to have velocity applied. If not, store it to be applied later.
     /// </summary>
     /// <param name="desiredVelocity"></param>
-    private void TryApplyVelocity(Vector2 desiredVelocity)
+    protected void TryApplyVelocity(Vector2 desiredVelocity)
     {
         if (state.currentCombatState == CharacterState.CombatState.Hitstun)
         {

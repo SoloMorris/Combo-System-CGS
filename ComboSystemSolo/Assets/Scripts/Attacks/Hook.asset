@@ -16,10 +16,8 @@ MonoBehaviour:
   timesCanHit: 2
   name: Hook
   startsACombo: 1
-  hitboxActiveFrame: 20
-  hitboxEndFrame: 70
-  hitStun: 30
-  playerHitLag: 40
+  aerialMove: 0
+  playerHitLag: 25
   damage: 4
   attackInputName:
   - Heavy
@@ -28,3 +26,4 @@ MonoBehaviour:
   attachedEffects:
   - {fileID: 11400000, guid: dff25b50eca757e4bb6b2bb648e8eaec, type: 2}
   hit: 0
+  active: 0

@@ -137,11 +137,6 @@ public class PlayerAttacks : PlayerComponent
         activeAttack.attackHitEvent += OnAttackHit;
         SetCombatState(CharacterState.CombatState.Attacking);
         activeAttack.active = true;
-        foreach (var fx in activeAttack.attachedEffects)
-        {
-            if (fx.customEffect != null)
-                fx.SetupCustomEffect(combatant, null);
-        }
         cAnimation.PlayAnimation(activeAttack.attackAnimation);
 
         Attack FindAttack()

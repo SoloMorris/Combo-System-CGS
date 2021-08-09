@@ -17,7 +17,7 @@ MonoBehaviour:
   name: AirStomp
   startsACombo: 1
   aerialMove: 1
-  playerHitLag: 0
+  playerHitLag: 10
   damage: 3
   attackInputName:
   - Heavy

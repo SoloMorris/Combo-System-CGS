@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3a2a58a3636554981ef8e63788ba45, type: 3}
-  m_Name: Uppercut-Player
+  m_Name: AirKickKB
   m_EditorClassIdentifier: 
   effectTag: KB
   effectDuration: 0
   timer: 0
-  targetTag: Player
-  applyCondition: 1
+  targetTag: Enemy
+  applyCondition: 0
   endsAttackEarly: 0
-  attackMustHit: 1
-  howManyTimes: 1
+  attackMustHit: 0
+  howManyTimes: 0
   eDamage: 0
   damageInstant: 0
-  knockbackDirection: {x: 0, y: 1}
-  knockbackDist: 5
-  knockbackInstant: 1
+  knockbackDirection: {x: -1, y: 0}
+  knockbackDist: 1
+  knockbackInstant: 0
   forceState: 0
-  ForcedState: 0
+  ForcedState: 3
   forceMovementState: 0
-  ForcedMovementState: 2
-  returnAfterEnd: 0
+  ForcedMovementState: 0
+  returnAfterEnd: 1
   timesCanBeApplied: 1
   timesApplied: 0

@@ -17,6 +17,7 @@ MonoBehaviour:
   timer: 0
   targetTag: Enemy
   applyCondition: 0
+  endsAttackEarly: 0
   attackMustHit: 0
   howManyTimes: 0
   eDamage: 0
@@ -29,5 +30,5 @@ MonoBehaviour:
   forceMovementState: 0
   ForcedMovementState: 0
   returnAfterEnd: 0
-  timesCanBeApplied: 2
+  timesCanBeApplied: 1
   timesApplied: 0

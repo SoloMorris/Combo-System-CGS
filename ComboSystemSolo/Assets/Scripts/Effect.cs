@@ -30,6 +30,8 @@ public class Effect : ScriptableObject
     /// </summary>
     public CharacterState.CombatState applyCondition;
 
+    public bool endsAttackEarly;
+
     /// <summary>
     /// Must the attack hit before the effect can be applied?
     /// </summary>
@@ -82,19 +84,6 @@ public class Effect : ScriptableObject
     /// How many times this effect has already been applied.
     /// </summary>
     [HideInInspector] public int timesApplied;
-
-    [SerializeField] public CustomEffect customEffect;
-
-    public void SetupCustomEffect(Combatant host, Combatant target)
-    {
-        if (customEffect != null)
-            customEffect.Assign(host,target);
-    }
-
-    public void ExecuteCustomEffect()
-    {
-        customEffect.ExecuteEffect();
-    }
 
     public void Reset()
     {
