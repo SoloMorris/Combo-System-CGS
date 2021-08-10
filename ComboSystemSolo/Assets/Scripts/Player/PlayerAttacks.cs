@@ -18,7 +18,7 @@ public class PlayerAttacks : PlayerComponent
     /// <summary>
     /// To store directional inputs for an attack.
     /// </summary>
-    private ActionQueue storedInputs = new ActionQueue();
+    public ActionQueue storedInputs = new ActionQueue();
 
     /// <summary>
     /// Sets to true every frame, allows delay of hitlag enumerator 
@@ -33,7 +33,15 @@ public class PlayerAttacks : PlayerComponent
     void Update()
     {
         storedInputs.UpdateQueue();
-        if(state.currentMovementState == CharacterState.MovementState.Free) SetCombatState(CharacterState.CombatState.Neutral);
+
+        EnsureState();
+        void EnsureState()
+        {
+            if (state.currentCombatState == CharacterState.CombatState.Neutral && activeAttack)
+            {
+                print("catch states mismatched");
+            }
+        }
     }
 
     #region Attack Delegates
@@ -41,9 +49,22 @@ public class PlayerAttacks : PlayerComponent
     private void OnAttackHit()
     {
         if (!IsAttackActive()) return;
+        if (activeAttack.canBeCancelled)
+        {
+            OnCancellableAttackHit();
+            return;
+        }
         SetCombatState(CharacterState.CombatState.Hitlag);
         activeAttack.hit++;
         if (activeAttack.playerHitLag > 0) StartCoroutine(FreezeHitlag());
+    }
+    
+    private void OnCancellableAttackHit()
+    {
+        if (!IsAttackActive()) return;
+        SetCombatState(CharacterState.CombatState.Free);
+        activeAttack.hit++;
+        if (activeAttack.playerHitLag > 0) StartCoroutine(FreezeCancelWindow());
     }
 
     public IEnumerator FreezeHitlag()
@@ -52,26 +73,50 @@ public class PlayerAttacks : PlayerComponent
         while (counter < activeAttack.playerHitLag)
         {
             if (activeAttack == null) yield break;
-            GetComponent<Animator>().enabled = false;
+            GetComponent<Animator>().speed = 0f;
             MyBody.velocity = Vector2.zero;
             counter++;
             yield return 0;
         }
         SetCombatState(CharacterState.CombatState.Attacking);
-        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().speed = 1f;
     }
+
+    public IEnumerator FreezeCancelWindow()
+    {
+        float counter = 0f;
+        while (counter < activeAttack.playerHitLag)
+        {
+            if (activeAttack == null) yield break;
+            GetComponent<Animator>().speed = 0f;
+            MyBody.velocity = Vector2.zero;
+            counter++;
+            yield return 0;
+        }
+        GetComponent<Animator>().speed = 1f;
+        SetCombatState(CharacterState.CombatState.Attacking);
+    }
+
     #endregion
 
     #region Animation Events
     public void OnAttackEnd(Attack atk)
     {
-        if (activeAttack == null || atk.name != activeAttack.name) return;
+        if (activeAttack == null || atk.name != activeAttack.name)
+        {
+            return;
+        }
+        
         SetCombatState(CharacterState.CombatState.Neutral);
         cHitBox.Deactivate();
         activeAttack.attackHitEvent -= OnAttackHit;
         activeAttack.active = false;
         activeAttack.hit = 0;
         activeAttack = null;
+        StopCoroutine(FreezeHitlag());
+        StopCoroutine(FreezeCancelWindow());
+        GetComponent<Animator>().speed = 1f;
+        print("Attack over");
     }
 
     public void TryApplySelfEffect()
@@ -94,13 +139,13 @@ public class PlayerAttacks : PlayerComponent
 
     public void CheckAnimationIsCleared()
     {
-        if (activeAttack != null)
+        if (activeAttack != null || state.currentCombatState == CharacterState.CombatState.Attacking)
             OnAttackEnd(activeAttack);
     }
     public void EnterRecovery()
     {
         if (IsAttackActive())
-        SetCombatState(CharacterState.CombatState.Recovery);
+            SetCombatState(CharacterState.CombatState.Recovery);
     }
 
     #endregion
@@ -111,6 +156,7 @@ public class PlayerAttacks : PlayerComponent
         return true;
     }
 
+    
     public Attack GetActiveAttack()
     {
         return activeAttack;
@@ -156,7 +202,7 @@ public class PlayerAttacks : PlayerComponent
 
                 //  If the player isn't in lock state, just find the matching input.
                 // if the player is attacking, assume that they are trying to input a combo.
-                if (activeAttack == null)
+                if (state.currentCombatState == CharacterState.CombatState.Neutral)
                 {
                     // Return an attack that starts a combo.
                     if (move.attackInputName.Count == 1 && move.attackInputName[0] == atk.inputContext.action.name
@@ -209,7 +255,7 @@ public class PlayerAttacks : PlayerComponent
     {
         if (GetMovementState() == CharacterState.MovementState.Disabled) return false;
         return GetCombatState() != CharacterState.CombatState.Attacking && 
-               GetCombatState() != CharacterState.CombatState.Hitstun;
+               GetCombatState() != CharacterState.CombatState.Hitstun || GetCombatState() == CharacterState.CombatState.Free;
     }
 
 }

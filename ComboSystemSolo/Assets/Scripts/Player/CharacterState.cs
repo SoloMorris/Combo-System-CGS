@@ -11,11 +11,9 @@ public class CharacterState : MonoBehaviour
    public enum MovementState
    {
       Neutral,
-      Moving,
       Airborne,
       Disabled,
       Locked,
-      Free
    }
 
    /// <summary>
@@ -43,6 +41,11 @@ public class CharacterState : MonoBehaviour
       /// The character is winding back from their attack.
       /// </summary>
       Recovery,
+      
+      /// <summary>
+      /// The character is able to perform any attack but isn't considered neutral.
+      /// </summary>
+      Free
       
    }
 

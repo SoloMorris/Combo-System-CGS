@@ -30,8 +30,6 @@ public class GroundDetection : PlayerComponent
         if (!other.CompareTag("Floor")) return;
         {
             cMovement.grounded = false;
-            if (state.currentMovementState != CharacterState.MovementState.Free)
-                SetMovementState(CharacterState.MovementState.Airborne);
         }
     }
 

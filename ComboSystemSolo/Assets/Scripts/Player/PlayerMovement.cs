@@ -29,9 +29,12 @@ public class PlayerMovement : PlayerComponent
         cAnimation.animator.SetBool("Grounded", grounded);
         TryMove();
         cAnimation.animator.SetBool("PrevGroundedState", grounded);
-        if (!grounded && state.currentMovementState != CharacterState.MovementState.Free) SetMovementState(CharacterState.MovementState.Airborne);
     }
 
+    public void SetLocked()
+    {
+        SetMovementState(CharacterState.MovementState.Locked);
+    }
 
     #region Movement Checks & Update
 
@@ -42,30 +45,29 @@ public class PlayerMovement : PlayerComponent
 
     private bool CanMove()
     {
-        return (state.currentCombatState == CharacterState.CombatState.Neutral && state.currentMovementState != CharacterState.MovementState.Disabled &&
-                state.currentMovementState != CharacterState.MovementState.Locked && grounded || state.currentMovementState == CharacterState.MovementState.Free);
+        return GetCombatState() == CharacterState.CombatState.Neutral &&
+               GetMovementState() != CharacterState.MovementState.Disabled &&
+               GetMovementState() != CharacterState.MovementState.Locked &&
+               grounded &&
+               GetMovementState() != CharacterState.MovementState.Airborne;
+
     }
 
     public bool CanJump()
     {
-        return (CanMove() && state.currentMovementState != CharacterState.MovementState.Airborne);
+        return CanMove() || GetCombatState() == CharacterState.CombatState.Free;
     }
 
     private void TryMove()
     {
-        if (CanMove() && MovementDirection != Vector2.zero)
+        if (CanMove())
             DoMovement(MovementDirection);
-        else if (MovementDirection == Vector2.zero)
+        
+        if (MovementDirection != Vector2.zero) return;
+        if (grounded && GetCombatState() == CharacterState.CombatState.Neutral)
         {
-            if (grounded)
-            {
-                MyBody.velocity = new Vector2(0, MyBody.velocity.y);
-                cAnimation.OnStopMove();
-            }
-            else
-            {
-                MyBody.velocity = new Vector2(MyBody.velocity.x, MyBody.velocity.y);
-            }
+            MyBody.velocity = new Vector2(0, MyBody.velocity.y);
+            cAnimation.OnStopMove();
         }
     }
 
@@ -82,15 +84,21 @@ public class PlayerMovement : PlayerComponent
 
     private void DoMovement(Vector2 direction)
     {
-        var myBody = MyBody;
-        if (direction.x == 0) return;
-        myBody.velocity = new Vector2(moveSpeed * direction.x * movementMod,
-            myBody.velocity.y);
+        MyBody.velocity = new Vector2(moveSpeed * direction.x * movementMod,
+            MyBody.velocity.y);
         cAnimation.OnMove();
     }
 
     private void DoJump()
     {
+        if (GetCombatState() == CharacterState.CombatState.Free)
+        {
+            DoMovement(MovementDirection);
+            cAttacks.OnAttackEnd(cAttacks.GetActiveAttack());
+            cAnimation.animator.SetTrigger("CancelJump");
+            SetCombatState(CharacterState.CombatState.Neutral);
+            return;
+        }
         SetMovementState(CharacterState.MovementState.Airborne);
         cAnimation.animator.SetTrigger("Jump");
     }
@@ -98,12 +106,15 @@ public class PlayerMovement : PlayerComponent
     public void AnimJumpLaunch()
     {
         groundDetection.LeaveGroundForTime(15f);
-        MyBody.velocity = new Vector2(MyBody.velocity.x, jumpHeight);
+        if (GetCombatState() == CharacterState.CombatState.Free)
+            MyBody.velocity = new Vector2(MovementDirection.x, jumpHeight);
+        else
+            MyBody.velocity = new Vector2(MyBody.velocity.x, jumpHeight);
     }
 
     public void AnimTouchGround()
     {
-        state.currentMovementState = CharacterState.MovementState.Neutral;
+        SetMovementState(CharacterState.MovementState.Neutral);
     }
 
     public void ZeroMovement()

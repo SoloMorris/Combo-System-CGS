@@ -26,10 +26,10 @@ AnimationClip:
       value: {fileID: -8266414737325977240, guid: 4a9e66777f901c942a62af7a6a22fecb,
         type: 3}
     - time: 0.05
-      value: {fileID: -8266414737325977240, guid: 4a9e66777f901c942a62af7a6a22fecb,
+      value: {fileID: -3600223585738074751, guid: 4a9e66777f901c942a62af7a6a22fecb,
         type: 3}
     attribute: m_Sprite
-    path: 
+    path: Sprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -40,7 +40,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 850496168
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -49,7 +49,7 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: -3498593721270353715, guid: 4a9e66777f901c942a62af7a6a22fecb, type: 3}
     - {fileID: -8266414737325977240, guid: 4a9e66777f901c942a62af7a6a22fecb, type: 3}
-    - {fileID: -8266414737325977240, guid: 4a9e66777f901c942a62af7a6a22fecb, type: 3}
+    - {fileID: -3600223585738074751, guid: 4a9e66777f901c942a62af7a6a22fecb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

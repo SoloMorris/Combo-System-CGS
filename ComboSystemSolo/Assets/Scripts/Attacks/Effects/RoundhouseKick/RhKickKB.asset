@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3a2a58a3636554981ef8e63788ba45, type: 3}
-  m_Name: AirKickCancel
+  m_Name: RhKickKB
   m_EditorClassIdentifier: 
-  effectTag: Cancel
-  effectDuration: 0.5
+  effectTag: 
+  effectDuration: 0
   timer: 0
-  targetTag: Player
-  applyCondition: 1
+  targetTag: Enemy
+  applyCondition: 0
   endsAttackEarly: 0
-  attackMustHit: 1
-  howManyTimes: 1
+  attackMustHit: 0
+  howManyTimes: 0
   eDamage: 0
   damageInstant: 0
   instantDamageApplied: 0
-  knockbackDirection: {x: 0, y: 0}
-  knockbackDist: 0
-  knockbackInstant: 0
+  knockbackDirection: {x: 1, y: 0}
+  knockbackDist: 2
+  knockbackInstant: 1
   instantKnockbackApplied: 0
-  forceState: 1
-  ForcedState: 5
+  forceState: 0
+  ForcedState: 0
   forceMovementState: 0
   ForcedMovementState: 0
   returnAfterEnd: 1

@@ -17,6 +17,7 @@ public class Attack : ScriptableObject
     public int timesCanHit;
     public string name; // Used as an ID to find other attacks.
     public bool startsACombo; // True if this attack is prioritised above others with the same input.
+    public bool canBeCancelled;
 
     /// <summary>
     /// True if the attack is used in the air, false if on the ground.

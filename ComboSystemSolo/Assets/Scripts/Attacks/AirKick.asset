@@ -16,8 +16,9 @@ MonoBehaviour:
   timesCanHit: 1
   name: AirKick
   startsACombo: 1
+  canBeCancelled: 1
   aerialMove: 1
-  playerHitLag: 30
+  playerHitLag: 25
   damage: 2
   attackInputName:
   - Light
@@ -26,6 +27,5 @@ MonoBehaviour:
   attachedEffects:
   - {fileID: 11400000, guid: 7639dfc1383d1334e82098f090d85680, type: 2}
   - {fileID: 11400000, guid: 762cda650d016504d8c34760099d9623, type: 2}
-  - {fileID: 11400000, guid: 2777ee689540dfe4aade5dc1df78d1d3, type: 2}
   hit: 0
   active: 0

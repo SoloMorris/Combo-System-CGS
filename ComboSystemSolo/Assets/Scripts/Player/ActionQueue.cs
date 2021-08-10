@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -76,6 +77,18 @@ namespace Player
 
         public bool countdownComplete;
 
+    }
+    /// <summary>
+    /// Struct to store InputAction contexts. Putting it here so it's easier to type
+    /// And also to future proof it. Totally.
+    /// </summary>
+    public struct ActionInput
+    {
+        public ActionInput(InputAction.CallbackContext context)
+        {
+            inputContext = context;
+        }
+        public InputAction.CallbackContext inputContext;
     }
 }
 

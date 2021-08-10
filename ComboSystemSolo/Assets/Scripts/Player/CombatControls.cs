@@ -39,12 +39,19 @@ namespace Player
         /// Tries to execute it. If it can't be executed, add it to the input queue.
         /// </summary>
         /// <param name="context">The CallbackContext of the input to measure it's press state</param>
-        public void ConvertInputAndExecute(InputAction.CallbackContext context)
+        public void ConvertInputAndExecute(InputAction.CallbackContext context, bool isDirection = false)
         {
+            if (isDirection)
+            {
+                var dir = new ActionInput(context);
+                    cAttacks.storedInputs.AddInputToQueue(dir);
+                return;
+            }
             var action = new ActionInput(context);
             if (!TryExecuteInput(action))
                 actionQueue.AddInputToQueue(action);
         }
+        
         
         /// <summary>
         /// Takes an input and tries to execute it in PlayerAttacks.
@@ -63,18 +70,7 @@ namespace Player
 
     }
     
-    /// <summary>
-    /// Struct to store InputAction contexts. Putting it here so it's easier to type
-    /// And also to future proof it. Totally.
-    /// </summary>
-    public struct ActionInput
-    {
-        public ActionInput(InputAction.CallbackContext context)
-        {
-            inputContext = context;
-        }
-        public InputAction.CallbackContext inputContext;
-    }
+
 
 
 

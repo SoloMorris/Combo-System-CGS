@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d810ccb16178c64fa3d9218b9ddba59, type: 3}
-  m_Name: Uppercut
+  m_Name: Kick
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: Uppercut
-  startsACombo: 0
-  canBeCancelled: 0
+  name: Kick
+  startsACombo: 1
   aerialMove: 0
   playerHitLag: 15
-  damage: 3
+  damage: 4
   attackInputName:
   - Heavy
-  prevAttack: {fileID: 11400000, guid: 8a8ddd6e5c23a904c99565d3d5fb11aa, type: 2}
-  attackAnimation: {fileID: 7400000, guid: 8f50e0e1c93aeb34bad36da2a719fb74, type: 2}
+  prevAttack: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: 21eb817e864c506468270c8352d814d4, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: 7a849c64f96ccd94fbb740da67c6ae03, type: 2}
-  - {fileID: 11400000, guid: 84b984abfa77e0f4993db79fa7f66d1b, type: 2}
-  - {fileID: 11400000, guid: 278bbbed454c16a47bb6db034652f270, type: 2}
+  - {fileID: 11400000, guid: fa647c6674e506d4c8fab8c15d24116c, type: 2}
   hit: 0
   active: 0
