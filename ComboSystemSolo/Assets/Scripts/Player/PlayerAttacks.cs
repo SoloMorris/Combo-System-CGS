@@ -33,6 +33,7 @@ public class PlayerAttacks : PlayerComponent
     void Update()
     {
         storedInputs.UpdateQueue();
+        if(state.currentMovementState == CharacterState.MovementState.Free) SetCombatState(CharacterState.CombatState.Neutral);
     }
 
     #region Attack Delegates
@@ -43,7 +44,6 @@ public class PlayerAttacks : PlayerComponent
         SetCombatState(CharacterState.CombatState.Hitlag);
         activeAttack.hit++;
         if (activeAttack.playerHitLag > 0) StartCoroutine(FreezeHitlag());
-        print("mom i'm hitting a thing");
     }
 
     public IEnumerator FreezeHitlag()
@@ -53,6 +53,7 @@ public class PlayerAttacks : PlayerComponent
         {
             if (activeAttack == null) yield break;
             GetComponent<Animator>().enabled = false;
+            MyBody.velocity = Vector2.zero;
             counter++;
             yield return 0;
         }
@@ -65,7 +66,6 @@ public class PlayerAttacks : PlayerComponent
     public void OnAttackEnd(Attack atk)
     {
         if (activeAttack == null || atk.name != activeAttack.name) return;
-        print("Attack "+activeAttack.name);
         SetCombatState(CharacterState.CombatState.Neutral);
         cHitBox.Deactivate();
         activeAttack.attackHitEvent -= OnAttackHit;
@@ -110,10 +110,6 @@ public class PlayerAttacks : PlayerComponent
         ExecuteAttackAction(atk);
         return true;
     }
-    private void HandleFightMode()
-    {
-            
-    }
 
     public Attack GetActiveAttack()
     {
@@ -132,12 +128,13 @@ public class PlayerAttacks : PlayerComponent
             return;
         }
         // If there is an attack being used, end it first
-        if (activeAttack != null) OnAttackEnd(activeAttack);
+        if (state.currentCombatState == CharacterState.CombatState.Recovery) OnAttackEnd(activeAttack);
         activeAttack = attack;
         activeAttack.attackHitEvent += OnAttackHit;
         SetCombatState(CharacterState.CombatState.Attacking);
         activeAttack.active = true;
         cAnimation.PlayAnimation(activeAttack.attackAnimation);
+        if (activeAttack == null) print("Catch");
 
         Attack FindAttack()
         {

@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 public class GroundDetection : PlayerComponent
 {
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private PlayerMovement playerMovement;
     private float Timer = 0f;
     private float tick = 0.0f;
     
@@ -31,7 +30,8 @@ public class GroundDetection : PlayerComponent
         if (!other.CompareTag("Floor")) return;
         {
             cMovement.grounded = false;
-            SetMovementState(CharacterState.MovementState.Airborne);
+            if (state.currentMovementState != CharacterState.MovementState.Free)
+                SetMovementState(CharacterState.MovementState.Airborne);
         }
     }
 
@@ -48,7 +48,7 @@ public class GroundDetection : PlayerComponent
     /// <param name="duration"></param>
     public void LeaveGroundForTime(float duration)
     {
-        playerMovement.grounded = false;
+        cMovement.grounded = false;
         Timer = duration;
     }
 
@@ -65,7 +65,7 @@ public class GroundDetection : PlayerComponent
         else
         {
             tick++;
-            playerMovement.grounded = false;
+            cMovement.grounded = false;
         }
     }
 }

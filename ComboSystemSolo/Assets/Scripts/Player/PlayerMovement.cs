@@ -29,7 +29,7 @@ public class PlayerMovement : PlayerComponent
         cAnimation.animator.SetBool("Grounded", grounded);
         TryMove();
         cAnimation.animator.SetBool("PrevGroundedState", grounded);
-        if (!grounded) SetMovementState(CharacterState.MovementState.Airborne);
+        if (!grounded && state.currentMovementState != CharacterState.MovementState.Free) SetMovementState(CharacterState.MovementState.Airborne);
     }
 
 
@@ -57,8 +57,15 @@ public class PlayerMovement : PlayerComponent
             DoMovement(MovementDirection);
         else if (MovementDirection == Vector2.zero)
         {
-            MyBody.velocity = new Vector2(0, MyBody.velocity.y);
+            if (grounded)
+            {
+                MyBody.velocity = new Vector2(0, MyBody.velocity.y);
                 cAnimation.OnStopMove();
+            }
+            else
+            {
+                MyBody.velocity = new Vector2(MyBody.velocity.x, MyBody.velocity.y);
+            }
         }
     }
 

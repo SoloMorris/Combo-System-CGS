@@ -25,7 +25,7 @@ namespace Player
             MyBody = GetComponent<Rigidbody2D>();
         }
         
-        protected void AssignComponentsInParents()
+        protected override void AssignComponentsInParents()
         {
             cAttacks = GetComponentInParent<PlayerAttacks>();
             cMovement = GetComponentInParent<PlayerMovement>();

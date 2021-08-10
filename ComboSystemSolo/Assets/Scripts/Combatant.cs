@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor.Sprites;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ public class Combatant : CharacterComponent
         return state.currentCombatState;
     }
 
-    protected virtual void Start()
+    protected void Start()
     {
         AssignComponents();
     }
@@ -42,6 +43,7 @@ public class Combatant : CharacterComponent
                 fx.Apply();
                 underEffects.Add(fx);
             }
+        HandleEffects();
     }
     protected virtual void UpdateState()
     {
@@ -79,18 +81,21 @@ public class Combatant : CharacterComponent
 
                 void ApplyDamage()
                 {
-                    if (fx.damageInstant)
+                    if (fx.damageInstant && !fx.instantDamageApplied)
                     {
                         health -= fx.eDamage;
-                        fx.eDamage = 0;
+                        fx.instantDamageApplied = true;
                     }
                     else 
                         health -= (fx.eDamage / (int)fx.effectDuration);
                 }
                 void ApplyKnockback()
                 {
-                    if (fx.knockbackInstant)
+                    if (fx.knockbackInstant && !fx.instantKnockbackApplied)
+                    {
                         TryApplyVelocity(fx.knockbackDirection * fx.knockbackDist);
+                        fx.instantKnockbackApplied = true;
+                    }
                     else
                         TryApplyVelocity(fx.knockbackDirection * (fx.knockbackDist * fx.effectDuration));
                 }
@@ -156,5 +161,30 @@ public class Combatant : CharacterComponent
     protected virtual void Die()
     {
         Destroy(gameObject);
+    }
+    
+    protected virtual void HandleGenericAnimation(Animator animator)
+    {
+        //  Handle hitstun
+        {
+            animator.SetBool("InHitstun", state.currentCombatState == CharacterState.CombatState.Hitstun);
+        }
+
+        //  Handle disabled state
+        {
+            if (state.currentMovementState == CharacterState.MovementState.Airborne &&
+                state.currentCombatState == CharacterState.CombatState.Hitstun)
+            {
+                state.currentMovementState = CharacterState.MovementState.Disabled;
+                print("Oof");
+            }
+        }
+
+        //  If disabled, handle it in the animator
+        {
+            if (state.currentMovementState == CharacterState.MovementState.Disabled)
+                animator.SetBool("Disabled", true);
+        }
+
     }
 }

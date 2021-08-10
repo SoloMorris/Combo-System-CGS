@@ -19,6 +19,12 @@ public class CharacterComponent : MonoBehaviour
         state = GetComponent<CharacterState>();
         MyBody = GetComponent<Rigidbody2D>();
     }
+
+    protected virtual void AssignComponentsInParents()
+    {
+        state = GetComponentInParent<CharacterState>();
+        MyBody = GetComponentInParent<Rigidbody2D>();
+    }
     
     
 

@@ -52,6 +52,8 @@ public class Effect : ScriptableObject
     /// </summary>
     public bool damageInstant;
 
+    [HideInInspector] public bool instantDamageApplied;
+
     /// <summary>
     /// Direction the enemy is sent.
     /// </summary>
@@ -63,6 +65,7 @@ public class Effect : ScriptableObject
     /// </summary>
     public bool knockbackInstant;
 
+    [HideInInspector] public bool instantKnockbackApplied;
     /// <summary>
     /// State to force the target into over duration of effect.
     /// </summary>
@@ -89,6 +92,8 @@ public class Effect : ScriptableObject
     {
         timer = 0f;
         timesApplied = 0;
+        instantDamageApplied = false;
+        instantKnockbackApplied = false;
     }
     public void TickEffect()
     {

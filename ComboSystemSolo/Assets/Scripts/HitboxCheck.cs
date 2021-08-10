@@ -8,7 +8,6 @@ public class HitboxCheck : PlayerComponent
 
     public bool active;
     public Attack attack;
-    private int timesHit = 0;
     private void Start()
     {
         AssignComponents();
@@ -22,18 +21,20 @@ public class HitboxCheck : PlayerComponent
             var enemy = collision.gameObject.GetComponent<Enemy>();
                 
             // Ensure the same attack doesn't hit twice on accident -- maybe add a numberofhits to attack for multihits
-            if (enemy.GetCombatState() == CharacterState.CombatState.Hitstun &&
-                enemy.lastHitBy.name == attack.name ||
-                timesHit >= attack.timesCanHit)
+            if (CannotHitEnemy(enemy))
                 return;
             
             attack.attackHitEvent?.Invoke();
             enemy.ReceiveAttack(attack);
-            timesHit++;
             print("I hit " + enemy.name + " with " + attack.name + "!!!");
         }
     }
 
+    private bool CannotHitEnemy(Enemy nme)
+    {
+        return nme.GetCombatState() == CharacterState.CombatState.Hitstun &&
+               nme.lastHitBy.name == attack.name || attack.hit >= attack.timesCanHit;
+    }
     public void Activate(Attack atk)
     {
         attack = atk;
@@ -44,6 +45,5 @@ public class HitboxCheck : PlayerComponent
     {
         attack = null;
         active = false;
-        timesHit = 0;
     }
 }
