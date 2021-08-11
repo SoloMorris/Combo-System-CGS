@@ -73,6 +73,12 @@ namespace Player
             map.SwitchCurrentActionMap("Neutral");
         
         }
+
+        public void OnExecute(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            cAttacks.TryStartSpecial();
+        }
         #endregion
     }
 }

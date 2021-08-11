@@ -8,10 +8,7 @@ using UnityEngine.UIElements;
 
 public class PlayerAttacks : PlayerComponent
 {
-    [SerializeField] private BoxCollider2D myHitbox;
-    
     [Header("Attack Stuff")]
-    [SerializeField] private bool fightModeActive;
     [SerializeField] private AttackMovelist movelist;
     [SerializeField] private AttackMovelist specialMovelist;
     [SerializeField] Attack activeAttack;
@@ -19,22 +16,18 @@ public class PlayerAttacks : PlayerComponent
     /// <summary>
     /// To store directional inputs for an attack.
     /// </summary>
-    public ActionQueueString storedInputs = new ActionQueueString();
-
-    /// <summary>
-    /// Sets to true every frame, allows delay of hitlag enumerator 
-    /// </summary>
-    private bool hitLagCheck =false;
+    public ActionQueueString specialInputs = new ActionQueueString();
+    
     private void Start()
     {
         AssignComponents();
-        storedInputs.lifetime = 1.0f;
+        specialInputs.lifetime = 1.0f;
     }
 
 
     void Update()
     {
-        storedInputs.UpdateQueue();
+        specialInputs.UpdateQueue();
 
         EnsureState();
         void EnsureState()
@@ -159,7 +152,11 @@ public class PlayerAttacks : PlayerComponent
         ExecuteAttackAction(atk);
         return true;
     }
-
+    public void TryStartSpecial()
+    {
+        if (!CheckStatesAllowAction()) return;
+        ExecuteAttackAction(new ActionInput());
+    }
     
     public Attack GetActiveAttack()
     {
@@ -218,53 +215,83 @@ public class PlayerAttacks : PlayerComponent
 
         Attack FindSpecialAttack()
         {
-            Attack closestMatch = null;
-            // Loop through the attacks in the special movelist
-            foreach (var move in specialMovelist.attacks)
+            
+            // Apply process of elimination
+            Attack bestFit = null;
+
+            for (int i = 0; i < specialInputs.Queue.Count - 1; i++)
             {
-                if (!move.enabled) continue;
-                // Loop through each input for the move
-                for (int i = 0; i < move.attackInputName.Count - 1; i++)
+                //For each move in the special movelist
+                foreach (var move in specialMovelist.attacks)
                 {
-                    
-                    var input = move.attackInputName[i];
-                    
-                    //  Loop through the stored inputs
-                    for (int j = 0; j  < storedInputs.Queue.Count; j++)
+                    var length = move.attackInputName.Count;
+                    var tick = i;
+                    var diff = 0;
+                    // If the input doesn't match, skip this move
+                    foreach (var input in move.attackInputName)
                     {
-                        //  If both inputs match, start another loop
-                        var match = storedInputs.Queue[j].name;
-                        if (input != match || j + 1 > storedInputs.Queue.Count - 1
-                        || i + 1 > move.attackInputName.Count - 1) continue;
-                        //  If these match again, continue through the inputs until end is reached.
-                        for (int n = i + 1; n < move.attackInputName.Count - 1; n++)
-                        {
-                            //  If they match AGAIN, use this to loop through the rest of the move
-                            for (int k = j + 1; k < storedInputs.Queue.Count; k++)
-                            {
-                                if (n == move.attackInputName.Count - 1)
-                                {
-                                    if (move.attackInputName[n] == atk.inputContext.action.name)
-                                        closestMatch = move;
-                                    break;
-                                }
+                        if (tick > specialInputs.Queue.Count - 1) break;
+                        if (input != specialInputs.Queue[tick].name) break;
+                        tick++;
+                    }
 
-                                var jMatch = storedInputs.Queue[k].name;
-                                if (move.attackInputName[n] == jMatch)
-                                    if (move.attackInputName[n + 1] == atk.inputContext.action.name)
-                                    {
-                                        closestMatch = move;
-                                        return closestMatch;
-                                    }
+                    diff = tick - i;
 
-                                break;
-
-                            }
-                        }
+                    if (diff == length)
+                    {
+                        specialInputs.Queue.RemoveRange(0, tick);
+                        bestFit = move;
                     }
                 }
             }
-            return closestMatch;
+
+            return bestFit;
+            // Attack closestMatch = null;
+            // // Loop through the attacks in the special movelist
+            // foreach (var move in specialMovelist.attacks)
+            // {
+            //     if (!move.enabled) continue;
+            //     // Loop through each input for the move
+            //     for (int i = 0; i < move.attackInputName.Count - 1; i++)
+            //     {
+            //         
+            //         var input = move.attackInputName[i];
+            //         
+            //         //  Loop through the stored inputs
+            //         for (int j = 0; j  < specialInputs.Queue.Count; j++)
+            //         {
+            //             //  If both inputs match, start another loop
+            //             var match = specialInputs.Queue[j].name;
+            //             if (input != match || j + 1 > specialInputs.Queue.Count - 1
+            //             || i + 1 > move.attackInputName.Count - 1) continue;
+            //             //  If these match again, continue through the inputs until end is reached.
+            //             for (int n = i + 1; n < move.attackInputName.Count - 1; n++)
+            //             {
+            //                 //  If they match AGAIN, use this to loop through the rest of the move
+            //                 for (int k = j + 1; k < specialInputs.Queue.Count; k++)
+            //                 {
+            //                     if (n == move.attackInputName.Count - 1)
+            //                     {
+            //                         if (move.attackInputName[n] == atk.inputContext.action.name)
+            //                             closestMatch = move;
+            //                         break;
+            //                     }
+            //
+            //                     var jMatch = specialInputs.Queue[k].name;
+            //                     if (move.attackInputName[n] == jMatch)
+            //                         if (move.attackInputName[n + 1] == atk.inputContext.action.name)
+            //                         {
+            //                             closestMatch = move;
+            //                             return closestMatch;
+            //                         }
+            //
+            //                     break;
+            //
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 

@@ -44,16 +44,23 @@ namespace Player
         /// Tries to execute it. If it can't be executed, add it to the input queue.
         /// </summary>
         /// <param name="context">The CallbackContext of the input to measure it's press state</param>
-        public void ConvertInputAndExecute(InputAction.CallbackContext context, bool isDirection = false)
+        public void ConvertInputAndExecute(InputAction.CallbackContext context, bool isDir = false)
         {
-            if (isDirection)
+            if (GetMovementState() == CharacterState.MovementState.Locked)
             {
+                
                 var dir = new ActionInput(context);
+                if (!isDir) //  Store attack inputs
+                {
+                    cAttacks.specialInputs.AddInputToQueue(dir.inputContext.action.name);
+                    return;
+                }
+                //Convert and then store direction inputs
                 var xy = dir.inputContext.ReadValue<Vector2>();
                 CreateInputDirections(xy, dir);
-                if (dir.inputContext.action.name == prevDirection || dir.inputContext.action.name == "Movement") return;
+                if (dir.inputContext.action.name == prevDirection || dir.inputContext.action.name == "Directions") return;
                 prevDirection = dir.inputContext.action.name;
-                cAttacks.storedInputs.AddInputToQueue(dir.inputContext.action.name);
+                cAttacks.specialInputs.AddInputToQueue(dir.inputContext.action.name);
                 return;
             }
             var action = new ActionInput(context);

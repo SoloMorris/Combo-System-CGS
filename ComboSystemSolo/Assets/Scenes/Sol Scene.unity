@@ -6890,7 +6890,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_ActionId
@@ -6914,7 +6914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_ActionId
-      value: e94098ec-4f1a-4dd6-98d5-69f2f6d3c561
+      value: 3c36aad0-b1cd-4331-b844-ff5b9d5f1dba
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_ActionId
@@ -6946,7 +6946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_ActionName
-      value: Locked/Left[/XInputControllerWindows/leftStick/left]
+      value: Locked/Execute[/XInputControllerWindows/rightShoulder]
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_ActionName
@@ -7106,7 +7106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnLockHorizontal
+      value: OnExecute
       objectReference: {fileID: 0}
     - target: {fileID: 975064536, guid: 8a7b9ea78a2c5164695d9552d0f834ed, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

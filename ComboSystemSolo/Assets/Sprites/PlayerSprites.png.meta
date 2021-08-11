@@ -10586,7 +10586,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 469
-        y: 303
+        y: 304
         width: 41
         height: 50
       alignment: 7
@@ -10607,7 +10607,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 513
-        y: 303
+        y: 304
         width: 43
         height: 52
       alignment: 7
@@ -16025,7 +16025,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 727
-        y: 322
+        y: 323
         width: 57
         height: 86
       alignment: 7
@@ -16259,8 +16259,8 @@ TextureImporter:
         y: 318
         width: 60
         height: 91
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -16280,8 +16280,8 @@ TextureImporter:
         y: 332
         width: 57
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

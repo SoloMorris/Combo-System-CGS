@@ -268,6 +268,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Execute",
+                    "type": "Button",
+                    "id": "3c36aad0-b1cd-4331-b844-ff5b9d5f1dba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -323,6 +331,17 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Unlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a2d75f0-c929-4b2a-ac9a-0637b98a025b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Execute",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

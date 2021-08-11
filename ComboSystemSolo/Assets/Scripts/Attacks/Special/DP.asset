@@ -22,11 +22,11 @@ MonoBehaviour:
   damage: 10
   attackInputName:
   - Down
-  - Down-Right
-  - Right
   - Light
+  - Right
+  - Heavy
   prevAttack: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 8e5dc6595d8f2fd428080a82eff1df2f, type: 2}
   attachedEffects: []
   hit: 0
-  active: 0
+  active: 1
