@@ -1210,13 +1210,13 @@ TextureImporter:
     second: SpriteSheetRedone_432
   - first:
       213: -3065207547829560642
-    second: SpriteSheetRedone_433
+    second: DP_1
   - first:
       213: -756570466025262282
-    second: SpriteSheetRedone_434
+    second: DP_2
   - first:
       213: 7223841080843067152
-    second: SpriteSheetRedone_435
+    second: DP_3
   - first:
       213: -8218121727852794174
     second: SpriteSheetRedone_436
@@ -1225,13 +1225,13 @@ TextureImporter:
     second: SpriteSheetRedone_437
   - first:
       213: 5169131191641731095
-    second: SpriteSheetRedone_438
+    second: DP_9
   - first:
       213: -4801818846930916624
-    second: SpriteSheetRedone_439
+    second: DP_10
   - first:
       213: 2201834954733099563
-    second: SpriteSheetRedone_440
+    second: DP_11
   - first:
       213: -7317354936457417224
     second: SpriteSheetRedone_441
@@ -2002,7 +2002,7 @@ TextureImporter:
     second: SpriteSheetRedone_665
   - first:
       213: 5654098723027821211
-    second: SpriteSheetRedone_666
+    second: DP_6
   - first:
       213: -5877717529699063244
     second: SpriteSheetRedone_667
@@ -2011,10 +2011,10 @@ TextureImporter:
     second: SpriteSheetRedone_668
   - first:
       213: 5246903971147113343
-    second: SpriteSheetRedone_669
+    second: DP_4
   - first:
       213: -2969523237434661195
-    second: SpriteSheetRedone_670
+    second: DP_8
   - first:
       213: -5449272309709449138
     second: SpriteSheetRedone_671
@@ -2045,6 +2045,12 @@ TextureImporter:
   - first:
       213: 1513937373763571156
     second: SpriteSheetRedone_680
+  - first:
+      213: 600787656912180804
+    second: DP_5
+  - first:
+      213: -6573777416417220690
+    second: DP_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -10576,7 +10582,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_433
+      name: DP_1
       rect:
         serializedVersion: 2
         x: 469
@@ -10597,7 +10603,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_434
+      name: DP_2
       rect:
         serializedVersion: 2
         x: 513
@@ -10618,7 +10624,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_435
+      name: DP_3
       rect:
         serializedVersion: 2
         x: 559
@@ -10639,54 +10645,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_436
+      name: DP_9
       rect:
         serializedVersion: 2
-        x: 719
-        y: 372
-        width: 5
-        height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ce2a6a74dd53fd80800000000000000
-      internalID: -8218121727852794174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_437
-      rect:
-        serializedVersion: 2
-        x: 838
-        y: 362
-        width: 6
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7fb02580336aeee0800000000000000
-      internalID: -1231062488089313410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_438
-      rect:
-        serializedVersion: 2
-        x: 899
+        x: 905
         y: 331
-        width: 41
+        width: 35
         height: 63
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -10702,7 +10666,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_439
+      name: DP_10
       rect:
         serializedVersion: 2
         x: 943
@@ -10723,7 +10687,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_440
+      name: DP_11
       rect:
         serializedVersion: 2
         x: 983
@@ -16057,13 +16021,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_666
+      name: DP_6
       rect:
         serializedVersion: 2
         x: 727
-        y: 331
+        y: 322
         width: 57
-        height: 77
+        height: 86
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -16078,49 +16042,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_667
-      rect:
-        serializedVersion: 2
-        x: 865
-        y: 400
-        width: 6
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43a63385c072e6ea0800000000000000
-      internalID: -5877717529699063244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_668
-      rect:
-        serializedVersion: 2
-        x: 876
-        y: 391
-        width: 18
-        height: 18
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92d9333f8b50d6670800000000000000
-      internalID: 8533483160849325353
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_669
+      name: DP_4
       rect:
         serializedVersion: 2
         x: 602
@@ -16141,13 +16063,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheetRedone_670
+      name: DP_8
       rect:
         serializedVersion: 2
         x: 847
         y: 331
-        width: 32
-        height: 69
+        width: 55
+        height: 78
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -16199,48 +16121,6 @@ TextureImporter:
       bones: []
       spriteID: c12f450eb67bd7d70800000000000000
       internalID: 9042585300782871068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_673
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 318
-        width: 17
-        height: 5
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4dd6aba6e4754720800000000000000
-      internalID: 2829796474943364426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheetRedone_674
-      rect:
-        serializedVersion: 2
-        x: 755
-        y: 322
-        width: 19
-        height: 12
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d682143a553ab5080800000000000000
-      internalID: -9197578225767602067
       vertices: []
       indices: 
       edges: []
@@ -16367,6 +16247,48 @@ TextureImporter:
       bones: []
       spriteID: 4dd8d5f2506920510800000000000000
       internalID: 1513937373763571156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DP_5
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 318
+        width: 60
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44690bbd03d665800800000000000000
+      internalID: 600787656912180804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DP_7
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 332
+        width: 57
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea767f5e44045c4a0800000000000000
+      internalID: -6573777416417220690
       vertices: []
       indices: 
       edges: []

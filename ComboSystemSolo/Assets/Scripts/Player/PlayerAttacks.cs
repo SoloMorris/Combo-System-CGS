@@ -13,12 +13,13 @@ public class PlayerAttacks : PlayerComponent
     [Header("Attack Stuff")]
     [SerializeField] private bool fightModeActive;
     [SerializeField] private AttackMovelist movelist;
+    [SerializeField] private AttackMovelist specialMovelist;
     [SerializeField] Attack activeAttack;
 
     /// <summary>
     /// To store directional inputs for an attack.
     /// </summary>
-    public ActionQueue storedInputs = new ActionQueue();
+    public ActionQueueString storedInputs = new ActionQueueString();
 
     /// <summary>
     /// Sets to true every frame, allows delay of hitlag enumerator 
@@ -27,6 +28,7 @@ public class PlayerAttacks : PlayerComponent
     private void Start()
     {
         AssignComponents();
+        storedInputs.lifetime = 1.0f;
     }
 
 
@@ -70,7 +72,8 @@ public class PlayerAttacks : PlayerComponent
     public IEnumerator FreezeHitlag()
     {
         float counter = 0f;
-        while (counter < activeAttack.playerHitLag)
+        var storedAtk = activeAttack;
+        while (counter < storedAtk.playerHitLag)
         {
             if (activeAttack == null) yield break;
             GetComponent<Animator>().speed = 0f;
@@ -85,7 +88,8 @@ public class PlayerAttacks : PlayerComponent
     public IEnumerator FreezeCancelWindow()
     {
         float counter = 0f;
-        while (counter < activeAttack.playerHitLag)
+        var storedAtk = activeAttack;
+        while (counter < storedAtk.playerHitLag)
         {
             if (activeAttack == null) yield break;
             GetComponent<Animator>().speed = 0f;
@@ -166,6 +170,7 @@ public class PlayerAttacks : PlayerComponent
     {
         return activeAttack != null && activeAttack.active;
     }
+
     private void ExecuteAttackAction(ActionInput atk)
     {
         var attack = FindAttack();
@@ -173,6 +178,7 @@ public class PlayerAttacks : PlayerComponent
         {
             return;
         }
+
         // If there is an attack being used, end it first
         if (state.currentCombatState == CharacterState.CombatState.Recovery) OnAttackEnd(activeAttack);
         activeAttack = attack;
@@ -180,25 +186,16 @@ public class PlayerAttacks : PlayerComponent
         SetCombatState(CharacterState.CombatState.Attacking);
         activeAttack.active = true;
         cAnimation.PlayAnimation(activeAttack.attackAnimation);
-        if (activeAttack == null) print("Catch");
 
         Attack FindAttack()
         {
+            if (GetMovementState() == CharacterState.MovementState.Locked) return FindSpecialAttack();
             // Loop through the movelist and find a match.
             // If there is a match, try to find if there are any input matches.
 
-            Attack storedMove = null;
             foreach (var move in movelist.attacks)
-            {            
+            {
                 if (!move.enabled) continue;
-
-                // If the player is in locked state, try to match directional inputs as well
-                if (state.currentMovementState == CharacterState.MovementState.Locked)
-                {
-                    if (!TryFindDirectionalInputs())
-                        continue;
-                    return storedMove;
-                }
 
                 //  If the player isn't in lock state, just find the matching input.
                 // if the player is attacking, assume that they are trying to input a combo.
@@ -215,35 +212,59 @@ public class PlayerAttacks : PlayerComponent
                                                          && move.aerialMove != cMovement.grounded)
                     return move;
 
-                bool TryFindDirectionalInputs()
+            }
+            return null;
+        }
+
+        Attack FindSpecialAttack()
+        {
+            Attack closestMatch = null;
+            // Loop through the attacks in the special movelist
+            foreach (var move in specialMovelist.attacks)
+            {
+                if (!move.enabled) continue;
+                // Loop through each input for the move
+                for (int i = 0; i < move.attackInputName.Count - 1; i++)
                 {
-                    if (!move.attackInputName.Contains(atk.inputContext.action.name))
-                        return false;
-
-                    // If the input matches and the move only requires one input, this may be it - store it
-                    //  But continue looping in case a better is found.
-                    if (move.attackInputName.Count <= 1)
-                    {
-                        storedMove = move;
-                        return false;
-                    }
                     
-                    print("Trying to find directional inputs");
-
-                    bool[] checkListLength = new bool[storedInputs.Queue.Count];
+                    var input = move.attackInputName[i];
                     
-                    // Now loop through the checklist to find if the parts that match form a combo
-                    for (int i = 0; i < checkListLength.Length - 1; i++)
+                    //  Loop through the stored inputs
+                    for (int j = 0; j  < storedInputs.Queue.Count; j++)
                     {
-                        if (move.attackInputName[i] == atk.inputContext.action.name) continue;
-                        
-                        //TODO: Continue this
-                    }
+                        //  If both inputs match, start another loop
+                        var match = storedInputs.Queue[j].name;
+                        if (input != match || j + 1 > storedInputs.Queue.Count - 1
+                        || i + 1 > move.attackInputName.Count - 1) continue;
+                        //  If these match again, continue through the inputs until end is reached.
+                        for (int n = i + 1; n < move.attackInputName.Count - 1; n++)
+                        {
+                            //  If they match AGAIN, use this to loop through the rest of the move
+                            for (int k = j + 1; k < storedInputs.Queue.Count; k++)
+                            {
+                                if (n == move.attackInputName.Count - 1)
+                                {
+                                    if (move.attackInputName[n] == atk.inputContext.action.name)
+                                        closestMatch = move;
+                                    break;
+                                }
 
-                    return false;
+                                var jMatch = storedInputs.Queue[k].name;
+                                if (move.attackInputName[n] == jMatch)
+                                    if (move.attackInputName[n + 1] == atk.inputContext.action.name)
+                                    {
+                                        closestMatch = move;
+                                        return closestMatch;
+                                    }
+
+                                break;
+
+                            }
+                        }
+                    }
                 }
             }
-            return storedMove;
+            return closestMatch;
         }
     }
 

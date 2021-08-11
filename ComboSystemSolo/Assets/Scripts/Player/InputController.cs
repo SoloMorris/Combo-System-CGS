@@ -9,6 +9,7 @@ namespace Player
 
         private void Awake()
         {
+            AssignComponents();
             map = GetComponent<PlayerInput>();
         }
         
@@ -36,36 +37,16 @@ namespace Player
         public void OnLock(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
+            cMovement.SetLocked();
             map.SwitchCurrentActionMap("Locked");
 
         }
         #endregion
         #region Locked State
         
-        public void OnLockUp(InputAction.CallbackContext context)
+        public void OnLockDirection(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-
-            print("Up");
-            cCombatControls.ConvertInputAndExecute(context, true);
-        }
-        public void OnLockDown(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-
-            print("Down");
-            cCombatControls.ConvertInputAndExecute(context, true);
-        }
-        public void OnLockLeft(InputAction.CallbackContext context)
-        {
-            print("Left");
-            cCombatControls.ConvertInputAndExecute(context, true);
-        }
-        public void OnLockRight(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-
-            print("Right");
             cCombatControls.ConvertInputAndExecute(context, true);
         }
 
@@ -87,7 +68,8 @@ namespace Player
         }
         public void OnUnlock(InputAction.CallbackContext context)
         {
-            if (!context.canceled) return;
+            if (!context.performed) return;
+            cMovement.SetUnlocked();
             map.SwitchCurrentActionMap("Neutral");
         
         }

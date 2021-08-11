@@ -36,6 +36,11 @@ public class PlayerMovement : PlayerComponent
         SetMovementState(CharacterState.MovementState.Locked);
     }
 
+    public void SetUnlocked()
+    {
+        SetMovementState(CharacterState.MovementState.Neutral);
+    }
+
     #region Movement Checks & Update
 
     public void UpdateDirection(Vector2 newDirection)

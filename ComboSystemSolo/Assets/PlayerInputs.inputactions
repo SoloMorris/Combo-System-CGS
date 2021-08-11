@@ -137,17 +137,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ff542b72-bbfa-4927-8408-e58e1e3622e1",
-                    "path": "<XInputController>/leftStick",
-                    "interactions": "",
-                    "processors": "StickDeadzone",
-                    "groups": "Controller",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4a0147d1-2490-43c9-a464-ca9d348e4258",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -241,34 +230,10 @@
             "id": "48436afe-26bf-4714-a9d9-83c0510945b9",
             "actions": [
                 {
-                    "name": "Up",
-                    "type": "Button",
-                    "id": "edcf5a01-3f1e-407c-87e9-78ba33595309",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Down",
-                    "type": "Button",
-                    "id": "a9bb1374-b7c5-4a70-8fb5-daef0593dfd5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Left",
-                    "type": "Button",
-                    "id": "e94098ec-4f1a-4dd6-98d5-69f2f6d3c561",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Right",
-                    "type": "Button",
-                    "id": "9c20716c-a781-47ed-91af-6d490d136c12",
-                    "expectedControlType": "Button",
+                    "name": "Directions",
+                    "type": "Value",
+                    "id": "7e7e6d0b-a4e1-423c-a922-07e3cd73fd52",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -330,17 +295,6 @@
                 },
                 {
                     "name": "",
-                    "id": "80e93ba9-b9f0-403a-ac54-45421de1e0dd",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Unlock",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d86dffaa-f9de-4b7e-b628-82453fa0ab2a",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -352,45 +306,23 @@
                 },
                 {
                     "name": "",
-                    "id": "48d336eb-61db-48c0-a6d7-d660bdcdbdc2",
-                    "path": "<Gamepad>/leftStick/up",
+                    "id": "b92db051-a6d7-4dcd-8dce-9144d0a4f751",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Up",
+                    "groups": "Controller",
+                    "action": "Directions",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "906f4e4c-eb23-48dd-85d7-aaf6f972f40a",
-                    "path": "<Gamepad>/leftStick/down",
+                    "id": "e52059d8-1bb3-4f19-a758-2943e2fd154e",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Down",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fdc4545e-aa6f-4b23-8d70-95dccbafe090",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "99c36603-d52c-4d0c-9512-5f0b8e28eaa7",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Right",
+                    "groups": "Controller",
+                    "action": "Unlock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
