@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3a2a58a3636554981ef8e63788ba45, type: 3}
-  m_Name: KickStun
+  m_Name: KickKB
   m_EditorClassIdentifier: 
-  effectTag: Stun
+  effectTag: KB
   effectDuration: 0.5
   timer: 0
   targetTag: Enemy
@@ -23,14 +23,14 @@ MonoBehaviour:
   eDamage: 0
   damageInstant: 0
   instantDamageApplied: 0
-  knockbackDirection: {x: 0, y: 0}
-  knockbackDist: 0
+  knockbackDirection: {x: 1, y: 1}
+  knockbackDist: 4
   knockbackInstant: 1
   instantKnockbackApplied: 0
-  forceState: 1
-  ForcedState: 3
+  forceState: 0
+  ForcedState: 0
   forceMovementState: 0
   ForcedMovementState: 0
-  returnAfterEnd: 1
+  returnAfterEnd: 0
   timesCanBeApplied: 1
   timesApplied: 0

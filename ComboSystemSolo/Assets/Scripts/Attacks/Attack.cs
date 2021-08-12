@@ -4,6 +4,7 @@ using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.VFX;
 
 [CreateAssetMenu(menuName = "Combat/Attack")]
 public class Attack : ScriptableObject
@@ -18,6 +19,8 @@ public class Attack : ScriptableObject
     public string name; // Used as an ID to find other attacks.
     public bool startsACombo; // True if this attack is prioritised above others with the same input.
     public bool canBeCancelled;
+    public bool playVfxOnHit;
+    public VisualEffect vfx;
 
     /// <summary>
     /// True if the attack is used in the air, false if on the ground.

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
@@ -15,6 +16,13 @@ public class PlayerAnimation : PlayerComponent
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        AssignComponents();
+    }
+
+    private void Update()
+    {
+        if (GetMovementState() == CharacterState.MovementState.Locked) animator.SetBool("Locked", true);
+        else if (animator.GetBool("Locked")) animator.SetBool("Locked", false);
     }
 
     public void PlayAnimation(AnimationClip anim)

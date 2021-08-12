@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d810ccb16178c64fa3d9218b9ddba59, type: 3}
-  m_Name: DP
+  m_Name: DragonBomb
   m_EditorClassIdentifier: 
   enabled: 1
-  timesCanHit: 3
-  name: Dragon Punch
+  timesCanHit: 1
+  name: Dragon Bomb
   startsACombo: 1
   canBeCancelled: 0
+  playVfxOnHit: 1
+  vfx: {fileID: 6264049238173414578, guid: 2887f8e9092365e41ac50e7818c0f5e2, type: 3}
   aerialMove: 0
   playerHitLag: 50
   damage: 10
@@ -29,4 +31,4 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: 8e5dc6595d8f2fd428080a82eff1df2f, type: 2}
   attachedEffects: []
   hit: 0
-  active: 1
+  active: 0

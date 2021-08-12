@@ -44,6 +44,8 @@ public class PlayerAttacks : PlayerComponent
     private void OnAttackHit()
     {
         if (!IsAttackActive()) return;
+        if (activeAttack.playVfxOnHit)
+            activeAttack.vfx.Play();
         if (activeAttack.canBeCancelled)
         {
             OnCancellableAttackHit();
