@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor.Sprites;
 using UnityEngine;
 
 public class Combatant : CharacterComponent
