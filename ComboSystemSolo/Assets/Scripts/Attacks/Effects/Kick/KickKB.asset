@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KickKB
   m_EditorClassIdentifier: 
   effectTag: KB
-  effectDuration: 0.5
+  effectDuration: 0.6
   timer: 0
   targetTag: Enemy
   applyCondition: 0
@@ -23,8 +23,8 @@ MonoBehaviour:
   eDamage: 0
   damageInstant: 0
   instantDamageApplied: 0
-  knockbackDirection: {x: 1, y: 1}
-  knockbackDist: 4
+  knockbackDirection: {x: 1, y: 0.1}
+  knockbackDist: 6
   knockbackInstant: 1
   instantKnockbackApplied: 0
   forceState: 0

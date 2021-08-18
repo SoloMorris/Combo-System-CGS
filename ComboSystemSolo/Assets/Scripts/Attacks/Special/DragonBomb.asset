@@ -21,7 +21,7 @@ MonoBehaviour:
   vfx: {fileID: 6264049238173414578, guid: 2887f8e9092365e41ac50e7818c0f5e2, type: 3}
   aerialMove: 0
   playerHitLag: 50
-  damage: 10
+  damage: 100
   attackInputName:
   - Down
   - Light
