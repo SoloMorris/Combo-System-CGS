@@ -24,7 +24,7 @@ public class HitboxCheck : PlayerComponent
             if (CannotHitEnemy(enemy))
                 return;
             
-            attack.attackHitEvent?.Invoke();
+            attack.attackHitEvent?.Invoke(collision.gameObject.transform.position);
             enemy.ReceiveAttack(attack);
             print("I hit " + enemy.name + " with " + attack.name + "!!!");
         }

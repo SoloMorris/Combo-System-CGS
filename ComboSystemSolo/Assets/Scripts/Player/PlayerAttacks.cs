@@ -41,11 +41,12 @@ public class PlayerAttacks : PlayerComponent
 
     #region Attack Delegates
     
-    private void OnAttackHit()
+    private void OnAttackHit(Vector3 contactLocation)
     {
         if (!IsAttackActive()) return;
-        if (activeAttack.playVfxOnHit)
-            activeAttack.vfx.Play();
+        if (activeAttack.playVfxOnHit) {
+            var vfxInstance = Instantiate(activeAttack.vfx, contactLocation, Quaternion.identity);
+        }
         if (activeAttack.canBeCancelled)
         {
             OnCancellableAttackHit();

@@ -279,7 +279,7 @@ SpriteRenderer:
   m_Size: {x: 0.12666667, y: 0.20340714}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8236916347073774542
@@ -489,25 +489,105 @@ MonoBehaviour:
     m_ActionId: b6cde614-67c3-4fd6-8ce7-29828ca40316
     m_ActionName: Neutral/Lock On[/Keyboard/leftCtrl,/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: edcf5a01-3f1e-407c-87e9-78ba33595309
-    m_ActionName: Locked/Move Inputs[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
-  - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1102114944742156908}
+        m_TargetAssemblyTypeName: Player.InputController, Assembly-CSharp
+        m_MethodName: OnLockLight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b59f3c35-f865-4b02-810b-c723b5bbec2f
     m_ActionName: Locked/Light[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1102114944742156908}
+        m_TargetAssemblyTypeName: Player.InputController, Assembly-CSharp
+        m_MethodName: OnLockHeavy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: afd1d6fb-428c-4b49-8f7e-e5e5595a1ed7
     m_ActionName: Locked/Heavy[/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1102114944742156908}
+        m_TargetAssemblyTypeName: Player.InputController, Assembly-CSharp
+        m_MethodName: OnUnlock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fe588c5c-0c4e-4d14-8e34-c183f2e5a6f0
     m_ActionName: Locked/Unlock[/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e7818dc8-62d7-4824-8ac2-98c3b4d3ceb7
     m_ActionName: Locked/Jump[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102114944742156908}
+        m_TargetAssemblyTypeName: Player.InputController, Assembly-CSharp
+        m_MethodName: OnLockDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7e7e6d0b-a4e1-423c-a922-07e3cd73fd52
+    m_ActionName: Locked/Directions[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102114944742156908}
+        m_TargetAssemblyTypeName: Player.InputController, Assembly-CSharp
+        m_MethodName: OnExecute
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3c36aad0-b1cd-4331-b844-ff5b9d5f1dba
+    m_ActionName: Locked/Execute[/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102114944742156908}
+        m_TargetAssemblyTypeName: Player.InputController, Assembly-CSharp
+        m_MethodName: OnDebug
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f0ffe086-0f48-4f3e-8517-fecea991330d
+    m_ActionName: Neutral/DebugInput[/Keyboard/r,/XInputControllerWindows/rightStickPress]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Neutral
@@ -593,9 +673,8 @@ MonoBehaviour:
   cCombatControls: {fileID: 0}
   cHitBox: {fileID: 0}
   combatant: {fileID: 0}
-  myHitbox: {fileID: 267748568}
-  fightModeActive: 0
   movelist: {fileID: 11400000, guid: ea9008b0326ce3c4da6082f20ad4867e, type: 2}
+  specialMovelist: {fileID: 0}
   activeAttack: {fileID: 0}
 --- !u!114 &1044065766
 MonoBehaviour:

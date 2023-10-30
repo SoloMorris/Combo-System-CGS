@@ -46,7 +46,7 @@ public class Attack : ScriptableObject
 
     public bool active;
 
-    public delegate void AttackHitEvent();
+    public delegate void AttackHitEvent(Vector3 contactPosition);
     public delegate void AttackEndEvent(); // Set to true when attack is complete, signalling to end the move.
 
     public AttackHitEvent attackHitEvent;

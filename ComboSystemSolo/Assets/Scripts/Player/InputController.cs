@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -78,6 +79,11 @@ namespace Player
         {
             if (!context.performed) return;
             cAttacks.TryStartSpecial();
+        }
+
+        public void OnDebug(InputAction.CallbackContext context) {
+            if (!context.performed) return;
+            CombatManager.Instance.SpawnEnemy();
         }
         #endregion
     }

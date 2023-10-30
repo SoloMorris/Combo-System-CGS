@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DebugInput",
+                    "type": "Button",
+                    "id": "f0ffe086-0f48-4f3e-8517-fecea991330d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -222,6 +230,28 @@
                     "action": "Lock On",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb4db14d-a303-4d43-aeab-a3e7791481ad",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DebugInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "257e7715-5115-42b3-ae63-e6737d825250",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "DebugInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -230,7 +260,7 @@
             "id": "48436afe-26bf-4714-a9d9-83c0510945b9",
             "actions": [
                 {
-                    "name": "Directions",
+                    "name": "Right",
                     "type": "Value",
                     "id": "7e7e6d0b-a4e1-423c-a922-07e3cd73fd52",
                     "expectedControlType": "Vector2",
@@ -352,7 +382,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Directions",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -363,7 +393,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Directions",
+                    "action": "Right",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -374,7 +404,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Directions",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -385,7 +415,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Directions",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -396,7 +426,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Directions",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -407,7 +437,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Directions",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
