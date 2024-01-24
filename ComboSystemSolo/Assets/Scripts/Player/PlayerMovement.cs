@@ -34,11 +34,13 @@ public class PlayerMovement : PlayerComponent
     public void SetLocked()
     {
         SetMovementState(CharacterState.MovementState.Locked);
+        MyBody.gravityScale = 0f;
     }
 
     public void SetUnlocked()
     {
         SetMovementState(CharacterState.MovementState.Neutral);
+        MyBody.gravityScale = 1f;
     }
 
     #region Movement Checks & Update
@@ -119,7 +121,7 @@ public class PlayerMovement : PlayerComponent
 
     public void AnimTouchGround()
     {
-        SetMovementState(CharacterState.MovementState.Neutral);
+        if (GetMovementState() is CharacterState.MovementState.Airborne) SetMovementState(CharacterState.MovementState.Neutral);
     }
 
     public void ZeroMovement()

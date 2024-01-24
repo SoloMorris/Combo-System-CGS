@@ -5,12 +5,12 @@ namespace Player
     public class PlayerComponent : CharacterComponent
     {
         [Header("Components")]
-        public PlayerAttacks cAttacks;
-        public PlayerMovement cMovement;
-        public PlayerAnimation cAnimation;
-        public CombatControls cCombatControls;
-        public HitboxCheck cHitBox;
-        public PlayerCombatant combatant;
+        [HideInInspector] public PlayerAttacks cAttacks;
+        [HideInInspector] public PlayerMovement cMovement;
+        [HideInInspector] public PlayerAnimation cAnimation;
+        [HideInInspector] public CombatControls cCombatControls;
+        [HideInInspector] public HitboxCheck cHitBox;
+        [HideInInspector] public PlayerCombatant combatant;
 
     
         protected override void AssignComponents()
