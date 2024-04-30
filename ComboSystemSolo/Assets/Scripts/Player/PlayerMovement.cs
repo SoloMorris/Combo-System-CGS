@@ -67,14 +67,15 @@ public class PlayerMovement : PlayerComponent
 
     private void TryMove()
     {
-        if (CanMove())
+        if (CanMove()) {
             DoMovement(MovementDirection);
-        
-        if (MovementDirection != Vector2.zero) return;
-        if (grounded && GetCombatState() == CharacterState.CombatState.Neutral)
-        {
-            MyBody.velocity = new Vector2(0, MyBody.velocity.y);
-            cAnimation.OnStopMove();
+        }
+            var currentCombatState = GetCombatState();
+        if (MovementDirection == Vector2.zero || currentCombatState != CharacterState.CombatState.Neutral ) {
+            if (grounded) {
+                MyBody.velocity = new Vector2(0, MyBody.velocity.y);
+                cAnimation.OnStopMove();
+            }
         }
     }
 
