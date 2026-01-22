@@ -8,7 +8,6 @@ namespace Player
 {
     public class ActionQueue
     {
-        public float lifetime = 0.5f;
         //  Queue to store inputs that could not be executed.
         //  List instead of queue because queue doesn't allow much control
         public List<ActionQueueEntry> Queue = new List<ActionQueueEntry>();
@@ -20,7 +19,7 @@ namespace Player
         public void AddInputToQueue(ActionInput entryInput)
         {
             var newEntry = new ActionQueueEntry(entryInput);
-            newEntry.lifeTime = lifetime;
+            newEntry.lifeTime = PlayerAttacks.INPUTBUFFER;
             Queue.Add(newEntry);
         }
 
@@ -67,7 +66,7 @@ namespace Player
             action = _action;
         }
         public ActionInput action;
-        public float lifeTime = 0.5f;
+        public float lifeTime = PlayerAttacks.INPUTBUFFER;
 
         /// <summary>
         /// Ticks down this entry's time in the queue. When it hits 0, clear it from the queue.
@@ -90,7 +89,7 @@ namespace Player
             name = title;
         }
         public string name;
-        public float lifeTime = 0.5f;
+        public float lifeTime = PlayerAttacks.INPUTBUFFER;
 
         /// <summary>
         /// Ticks down this entry's time in the queue. When it hits 0, clear it from the queue.
@@ -131,7 +130,7 @@ namespace Player
 
 public class ActionQueueString
 {
-    public float lifetime = 0.5f;
+    public float lifetime = PlayerAttacks.SPECIALMOVEBUFFER;
     //  Queue to store inputs that could not be executed.
     //  List instead of queue because queue doesn't allow much control
     public List<ActionQueueEntryString> Queue = new List<ActionQueueEntryString>();

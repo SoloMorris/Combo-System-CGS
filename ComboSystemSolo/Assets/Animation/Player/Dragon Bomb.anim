@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dragon Bomb
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -83,7 +83,8 @@ AnimationClip:
       m_RotationOrder: 4
     path: Hitbox
   m_FloatCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -111,7 +112,9 @@ AnimationClip:
     path: Hitbox
     classID: 61
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -139,8 +142,10 @@ AnimationClip:
     path: Hitbox
     classID: 61
     script: {fileID: 0}
+    flags: 16
   m_PPtrCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
     - time: 0
       value: {fileID: -8843940808441212133, guid: b3b42ae474b7f6741bf4fc950ea9d205,
         type: 3}
@@ -163,6 +168,7 @@ AnimationClip:
     path: Sprite
     classID: 212
     script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -177,6 +183,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3579746941
       attribute: 3
@@ -184,6 +192,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 850496168
       attribute: 0
@@ -191,6 +201,8 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 850496168
       attribute: 1
@@ -198,6 +210,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3579746941
       attribute: 4197328169
@@ -205,6 +219,8 @@ AnimationClip:
       typeID: 61
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3579746941
       attribute: 2368279999
@@ -212,6 +228,8 @@ AnimationClip:
       typeID: 61
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -8843940808441212133, guid: b3b42ae474b7f6741bf4fc950ea9d205, type: 3}
     - {fileID: -447322180189629061, guid: b3b42ae474b7f6741bf4fc950ea9d205, type: 3}
@@ -240,7 +258,8 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -259,7 +278,9 @@ AnimationClip:
     path: Sprite
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -278,7 +299,9 @@ AnimationClip:
     path: Sprite
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -297,7 +320,9 @@ AnimationClip:
     path: Sprite
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -325,7 +350,9 @@ AnimationClip:
     path: Hitbox
     classID: 61
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -353,7 +380,9 @@ AnimationClip:
     path: Hitbox
     classID: 61
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -381,7 +410,9 @@ AnimationClip:
     path: Hitbox
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -409,7 +440,9 @@ AnimationClip:
     path: Hitbox
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -437,7 +470,9 @@ AnimationClip:
     path: Hitbox
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -465,7 +500,9 @@ AnimationClip:
     path: Hitbox
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -493,7 +530,9 @@ AnimationClip:
     path: Hitbox
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -521,6 +560,7 @@ AnimationClip:
     path: Hitbox
     classID: 4
     script: {fileID: 0}
+    flags: 16
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
@@ -540,7 +580,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: OnAttackEnd
+    functionName: EndAttackAnimation
     data: 
     objectReferenceParameter: {fileID: 11400000, guid: edf1630919a5108488abc0a1b03f1749,
       type: 2}

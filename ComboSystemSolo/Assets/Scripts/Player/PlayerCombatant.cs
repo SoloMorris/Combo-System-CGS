@@ -6,9 +6,9 @@ namespace Player
     public class PlayerCombatant : Combatant
     {
 
-        public override void ApplyEffectsFromAttack(Attack atk)
+        public override void ApplyEffectsFromAttack(AttackInstance atk)
         {
-            foreach (Effect fx in atk.attachedEffects)
+            foreach (Effect fx in atk.attackData.attachedEffects)
                 if (CompareTag(fx.targetTag) && state.currentCombatState == fx.applyCondition
                                              && HasHitConditionBeenMet(fx, atk))
                 {
@@ -16,10 +16,10 @@ namespace Player
                     underEffects.Add(fx);
                 }
 
-            bool HasHitConditionBeenMet(Effect fx, Attack atk)
+            bool HasHitConditionBeenMet(Effect fx, AttackInstance atk)
             {
                 if (!fx.attackMustHit) return true;
-                return atk.hit >= fx.howManyTimes;
+                return atk.hitCount >= fx.howManyTimes;
             }
         }
 
@@ -40,7 +40,7 @@ namespace Player
                             SetMovementState(CharacterState.MovementState.Neutral);
                         effect.Reset();
                         if (effect.endsAttackEarly)
-                            GetComponent<PlayerAttacks>().OnAttackEnd(GetComponent<PlayerAttacks>().GetActiveAttack());
+                            GetComponent<PlayerAttacks>().TryEndAttack(GetComponent<PlayerAttacks>().GetActiveAttack());
                         underEffects.Remove(effect);
                         break;
                     }

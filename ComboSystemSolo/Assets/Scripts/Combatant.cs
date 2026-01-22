@@ -26,16 +26,16 @@ public class Combatant : CharacterComponent
         UpdateState();
     }
 
-    public virtual void ReceiveAttack(Attack atk)
+    public virtual void ReceiveAttack(AttackInstance atk)
     {
-        health -= atk.damage;
+        health -= atk.attackData.damage;
         ApplyEffectsFromAttack(atk);
-        lastHitBy = atk;
+        lastHitBy = atk.attackData;
     }
 
-    public virtual void ApplyEffectsFromAttack(Attack atk)
+    public virtual void ApplyEffectsFromAttack(AttackInstance atk)
     {
-        foreach (Effect fx in atk.attachedEffects)
+        foreach (Effect fx in atk.attackData.attachedEffects)
             if (CompareTag(fx.targetTag))
             {
                 fx.Apply();
@@ -84,8 +84,8 @@ public class Combatant : CharacterComponent
                         health -= fx.eDamage;
                         fx.instantDamageApplied = true;
                     }
-                    else 
-                        health -= (fx.eDamage / (int)fx.effectDuration);
+                    else
+                        health -= (int)(fx.eDamage * (Time.deltaTime / fx.effectDuration));
                 }
                 void ApplyKnockback()
                 {
@@ -137,7 +137,7 @@ public class Combatant : CharacterComponent
         }
         else
         {
-            MyBody.velocity = desiredVelocity;
+            MyBody.linearVelocity = desiredVelocity;
             storedVelocity = Vector2.zero;
             storageActive = false;
         }
@@ -148,7 +148,7 @@ public class Combatant : CharacterComponent
             MyBody.gravityScale = 1f;
         else
         {
-            MyBody.velocity = Vector2.zero;
+            MyBody.linearVelocity = Vector2.zero;
             MyBody.gravityScale = 0;
         }
     }

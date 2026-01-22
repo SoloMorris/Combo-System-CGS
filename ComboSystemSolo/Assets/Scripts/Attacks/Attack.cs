@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Player;
+using System.Collections;
 using System.Collections.Generic;
-using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.VFX;
+using static Attack;
 
 [CreateAssetMenu(menuName = "Combat/Attack")]
 public class Attack : ScriptableObject
@@ -16,7 +17,7 @@ public class Attack : ScriptableObject
     /// Whether the attack will hit an enemy who has recovered from its hitstun again.
     /// </summary>
     public int timesCanHit;
-    public string name; // Used as an ID to find other attacks.
+    public string attackName; // Used as an ID to find other attacks.
     public bool startsACombo; // True if this attack is prioritised above others with the same input.
     public bool canBeCancelled;
     public bool playVfxOnHit;
@@ -46,12 +47,22 @@ public class Attack : ScriptableObject
 
     public bool active;
 
-    public delegate void AttackHitEvent(Vector3 contactPosition);
-    public delegate void AttackEndEvent(); // Set to true when attack is complete, signalling to end the move.
-
-    public AttackHitEvent attackHitEvent;
-    public AttackEndEvent attackEndEvent;
-    
-    
+ 
 
 }
+public class AttackInstance {
+    public Attack attackData;
+    public int hitCount;
+    public bool isActive;
+
+    public delegate void AttackHitEvent(Vector3 contactPosition);
+    public delegate void AttackEndEvent(); // Set to true when attack is complete, signalling to end the move.
+    public AttackHitEvent attackHitEvent;
+    public AttackEndEvent attackEndEvent;
+    public AttackInstance(Attack data) {
+        attackData = data;
+        hitCount = 0;
+        isActive = false;
+    }
+}
+

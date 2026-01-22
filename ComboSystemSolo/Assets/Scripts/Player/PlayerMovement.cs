@@ -73,7 +73,7 @@ public class PlayerMovement : PlayerComponent
             var currentCombatState = GetCombatState();
         if (MovementDirection == Vector2.zero || currentCombatState != CharacterState.CombatState.Neutral ) {
             if (grounded) {
-                MyBody.velocity = new Vector2(0, MyBody.velocity.y);
+                MyBody.linearVelocity = new Vector2(0, MyBody.linearVelocity.y);
                 cAnimation.OnStopMove();
             }
         }
@@ -92,8 +92,8 @@ public class PlayerMovement : PlayerComponent
 
     private void DoMovement(Vector2 direction)
     {
-        MyBody.velocity = new Vector2(moveSpeed * direction.x * movementMod,
-            MyBody.velocity.y);
+        MyBody.linearVelocity = new Vector2(moveSpeed * direction.x * movementMod,
+            MyBody.linearVelocity.y);
         cAnimation.OnMove();
     }
 
@@ -102,7 +102,7 @@ public class PlayerMovement : PlayerComponent
         if (GetCombatState() == CharacterState.CombatState.Free)
         {
             DoMovement(MovementDirection);
-            cAttacks.OnAttackEnd(cAttacks.GetActiveAttack());
+            cAttacks.TryEndAttack(cAttacks.GetActiveAttack());
             cAnimation.animator.SetTrigger("CancelJump");
             SetCombatState(CharacterState.CombatState.Neutral);
             return;
@@ -115,9 +115,9 @@ public class PlayerMovement : PlayerComponent
     {
         groundDetection.LeaveGroundForTime(15f);
         if (GetCombatState() == CharacterState.CombatState.Free)
-            MyBody.velocity = new Vector2(MovementDirection.x, jumpHeight);
+            MyBody.linearVelocity = new Vector2(MovementDirection.x, jumpHeight);
         else
-            MyBody.velocity = new Vector2(MyBody.velocity.x, jumpHeight);
+            MyBody.linearVelocity = new Vector2(MyBody.linearVelocity.x, jumpHeight);
     }
 
     public void AnimTouchGround()
@@ -127,7 +127,7 @@ public class PlayerMovement : PlayerComponent
 
     public void ZeroMovement()
     {
-        MyBody.velocity = Vector2.zero;
+        MyBody.linearVelocity = Vector2.zero;
     }
     #endregion
 

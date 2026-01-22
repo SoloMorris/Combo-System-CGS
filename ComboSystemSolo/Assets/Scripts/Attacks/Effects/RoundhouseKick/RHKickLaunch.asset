@@ -24,7 +24,7 @@ MonoBehaviour:
   damageInstant: 0
   instantDamageApplied: 0
   knockbackDirection: {x: 1, y: 0}
-  knockbackDist: 3
+  knockbackDist: 6
   knockbackInstant: 1
   instantKnockbackApplied: 0
   forceState: 0

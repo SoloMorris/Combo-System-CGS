@@ -7,7 +7,7 @@ public class HitboxCheck : PlayerComponent
 {
 
     public bool active;
-    public Attack attack;
+    public AttackInstance attack;
     private void Start()
     {
         AssignComponents();
@@ -26,16 +26,16 @@ public class HitboxCheck : PlayerComponent
             
             attack.attackHitEvent?.Invoke(collision.gameObject.transform.position);
             enemy.ReceiveAttack(attack);
-            print("I hit " + enemy.name + " with " + attack.name + "!!!");
+            print("I hit " + enemy.name + " with " + attack.attackData.attackName + "!!!");
         }
     }
 
     private bool CannotHitEnemy(Enemy nme)
     {
         return nme.GetCombatState() == CharacterState.CombatState.Hitstun &&
-               nme.lastHitBy.name == attack.name || attack.hit >= attack.timesCanHit;
+               nme.lastHitBy.attackName == attack.attackData.attackName || attack.hitCount >= attack.attackData.timesCanHit;
     }
-    public void Activate(Attack atk)
+    public void Activate(AttackInstance atk)
     {
         attack = atk;
         active = true;

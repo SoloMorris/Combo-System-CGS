@@ -108,3 +108,28 @@ public class Effect : ScriptableObject
 
 
 }
+public class EffectInstance 
+{
+    public Effect effectData;
+    public float timer;
+    public int timesApplied;
+    public bool instantDamageApplied;
+    public bool instantKnockbackApplied;
+
+    public EffectInstance(Effect data) {
+        effectData = data;
+        Reset();
+    }
+
+    public void Reset() {
+        timer = 0f;
+        timesApplied = 0;
+        instantDamageApplied = false;
+        instantKnockbackApplied = false;
+    }
+
+    public void Tick() {
+        timer += Time.deltaTime;
+    }
+}
+
