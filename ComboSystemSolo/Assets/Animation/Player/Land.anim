@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Land
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -18,7 +18,8 @@ AnimationClip:
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
     - time: 0
       value: {fileID: 4762618042552318845, guid: b3b42ae474b7f6741bf4fc950ea9d205,
         type: 3}
@@ -29,6 +30,7 @@ AnimationClip:
     path: Sprite
     classID: 212
     script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -43,6 +45,8 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: 4762618042552318845, guid: b3b42ae474b7f6741bf4fc950ea9d205, type: 3}
     - {fileID: 4762618042552318845, guid: b3b42ae474b7f6741bf4fc950ea9d205, type: 3}
@@ -72,14 +76,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: AnimTouchGround
+    functionName: CheckAnimationIsCleared
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: CheckAnimationIsCleared
+  - time: 0.1
+    functionName: AnimTouchGround
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: Uppercut
+  attackName: 
   startsACombo: 0
   canBeCancelled: 0
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 0
+  playerHitLagFrames: 4
+  enemyHitLagFrames: 12
   playerHitLag: 15
   damage: 3
   attackInputName:
@@ -25,7 +29,6 @@ MonoBehaviour:
   prevAttack: {fileID: 11400000, guid: 8a8ddd6e5c23a904c99565d3d5fb11aa, type: 2}
   attackAnimation: {fileID: 7400000, guid: 8f50e0e1c93aeb34bad36da2a719fb74, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: 7a849c64f96ccd94fbb740da67c6ae03, type: 2}
   - {fileID: 11400000, guid: 84b984abfa77e0f4993db79fa7f66d1b, type: 2}
   - {fileID: 11400000, guid: 278bbbed454c16a47bb6db034652f270, type: 2}
   hit: 0

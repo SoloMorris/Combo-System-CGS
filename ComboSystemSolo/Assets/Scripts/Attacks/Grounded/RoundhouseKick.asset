@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: RoundhouseKick
+  attackName: 
   startsACombo: 0
+  canBeCancelled: 0
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 0
+  playerHitLagFrames: 4
+  enemyHitLagFrames: 16
   playerHitLag: 30
   damage: 6
   attackInputName:
@@ -25,7 +30,6 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: 5fb716fda7d30364abce4aac18f7635c, type: 2}
   attachedEffects:
   - {fileID: 11400000, guid: 5f4872595c7889e47afdb578c673e9b6, type: 2}
-  - {fileID: 11400000, guid: 77d3920b043646b4fa736f3a8631c1ee, type: 2}
   - {fileID: 11400000, guid: e466e59633d25804f9807629552904db, type: 2}
   hit: 0
   active: 0

@@ -1,3 +1,4 @@
+using Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,10 +8,16 @@ public class Combatant : CharacterComponent
 {
     public int health;
     public Attack lastHitBy;
-    public List<Effect> underEffects = new List<Effect>();
-    
+
+    // Runtime instances (DO NOT store/mutate Effect ScriptableObjects at runtime)
+    public readonly List<EffectInstance> underEffects = new List<EffectInstance>();
+
+    // Per-target application limits (replaces Effect.timesApplied which was shared global state)
+    protected readonly Dictionary<Effect, int> _activeEffectCounts = new Dictionary<Effect, int>();
+
     protected Vector2 storedVelocity; //Velocity stores when the character is in hitstun. Applies when they exit hitstun.
     protected bool storageActive = false;
+    private Coroutine _hitstunCoroutine;
     public CharacterState.CombatState pGetCombatState()
     {
         return state.currentCombatState;
@@ -28,6 +35,9 @@ public class Combatant : CharacterComponent
 
     public virtual void ReceiveAttack(AttackInstance atk)
     {
+        // victim hitstun
+        ApplyHitStunSeconds(FramesToSeconds(atk.attackData.enemyHitLagFrames));
+
         health -= atk.attackData.damage;
         ApplyEffectsFromAttack(atk);
         lastHitBy = atk.attackData;
@@ -36,11 +46,23 @@ public class Combatant : CharacterComponent
     public virtual void ApplyEffectsFromAttack(AttackInstance atk)
     {
         foreach (Effect fx in atk.attackData.attachedEffects)
-            if (CompareTag(fx.targetTag))
-            {
-                fx.Apply();
-                underEffects.Add(fx);
-            }
+        {
+            if (!CompareTag(fx.targetTag))
+                continue;
+
+            // Enforce per-target apply limit
+            int currentCount = 0;
+            _activeEffectCounts.TryGetValue(fx, out currentCount);
+
+            // Treat 0 as "unlimited" to avoid accidental lockout from default int value
+            var max = fx.timesCanBeApplied;
+            if (max > 0 && currentCount >= max)
+                continue;
+
+            _activeEffectCounts[fx] = currentCount + 1;
+            underEffects.Add(new EffectInstance(fx));
+        }
+
         HandleEffects();
     }
     protected virtual void UpdateState()
@@ -62,63 +84,89 @@ public class Combatant : CharacterComponent
         
         void ApplyEffects()
         {
-            foreach (var fx in underEffects)
+            foreach (var inst in underEffects)
             {
+                var fx = inst.effectData;
+
                 if (fx.eDamage > 0)
                     ApplyDamage();
 
                 if (fx.knockbackDirection != Vector2.zero)
                     ApplyKnockback();
-                
+
                 if (fx.forceState)
                     SetCombatState(fx.ForcedState);
                 if (fx.forceMovementState)
                     SetMovementState(fx.ForcedMovementState);
 
-                fx.TickEffect();
+                inst.Tick();
 
                 void ApplyDamage()
                 {
-                    if (fx.damageInstant && !fx.instantDamageApplied)
+                    if (fx.damageInstant)
                     {
-                        health -= fx.eDamage;
-                        fx.instantDamageApplied = true;
+                        if (!inst.instantDamageApplied)
+                        {
+                            health -= fx.eDamage;
+                            inst.instantDamageApplied = true;
+                        }
                     }
                     else
-                        health -= (int)(fx.eDamage * (Time.deltaTime / fx.effectDuration));
+                    {
+                        // Spread damage across duration (guard against 0 duration)
+                        var denom = Mathf.Max(0.0001f, fx.effectDuration);
+                        health -= (int)(fx.eDamage * (Time.deltaTime / denom));
+                    }
                 }
+
                 void ApplyKnockback()
                 {
-                    if (fx.knockbackInstant && !fx.instantKnockbackApplied)
+                    if (fx.knockbackInstant)
                     {
-                        TryApplyVelocity(fx.knockbackDirection * fx.knockbackDist);
-                        fx.instantKnockbackApplied = true;
+                        if (!inst.instantKnockbackApplied)
+                        {
+                            TryApplyVelocity(fx.knockbackDirection * fx.knockbackDist);
+                            inst.instantKnockbackApplied = true;
+                        }
                     }
                     else
-                        TryApplyVelocity(fx.knockbackDirection * (fx.knockbackDist * fx.effectDuration));
+                    {
+                        // Over-time knockback (guard against 0 duration)
+                        var denom = Mathf.Max(0.0001f, fx.effectDuration);
+                        TryApplyVelocity(fx.knockbackDirection * (fx.knockbackDist * (Time.deltaTime / denom)));
+                    }
                 }
             }
         }
        
     }
 
-    protected virtual  void CheckEffectDuration()
+    protected virtual void CheckEffectDuration()
     {
         var check = true;
         do
         {
             check = true;
-            foreach (var effect in underEffects)
+            foreach (var inst in underEffects)
             {
-                if (effect.timer >= effect.effectDuration)
+                var fx = inst.effectData;
+                if (inst.timer >= fx.effectDuration)
                 {
                     check = false;
-                    if (effect.forceState && effect.returnAfterEnd)
+                    if (fx.forceState && fx.returnAfterEnd)
                         SetCombatState(CharacterState.CombatState.Neutral);
-                    if (effect.forceMovementState && effect.returnAfterEnd)
+                    if (fx.forceMovementState && fx.returnAfterEnd)
                         SetMovementState(CharacterState.MovementState.Neutral);
-                    effect.Reset();
-                    underEffects.Remove(effect);
+
+                    // Allow this Effect to be applied again once the current instance ends.
+                    if (_activeEffectCounts.TryGetValue(fx, out var count))
+                    {
+                        count = Mathf.Max(0, count - 1);
+                        if (count == 0) _activeEffectCounts.Remove(fx);
+                        else _activeEffectCounts[fx] = count;
+                    }
+
+                    underEffects.Remove(inst);
                     break;
                 }
             }
@@ -154,7 +202,7 @@ public class Combatant : CharacterComponent
     }
     protected virtual void CheckIfDie()
     {
-        if (health <= 0) Die();
+        if (health <= 0 && state.currentCombatState != CharacterState.CombatState.Hitstun) Die();
     }
     protected virtual void Die()
     {
@@ -184,5 +232,56 @@ public class Combatant : CharacterComponent
                 animator.SetBool("Disabled", true);
         }
 
+    }
+    protected void ApplyHitStunSeconds(float durationSeconds) {
+        if (durationSeconds <= 0f) return;
+
+        if (_hitstunCoroutine != null)
+            StopCoroutine(_hitstunCoroutine);
+
+        _hitstunCoroutine = StartCoroutine(hitstunCoroutine(durationSeconds));
+    }
+
+    private IEnumerator hitstunCoroutine(float durationSeconds) {
+        var prevCombatState = state.currentCombatState;
+
+        var anim = GetComponent<Animator>();
+        var prevAnimSpeed = anim != null ? anim.speed : 1f;
+
+        var prevVelocity = MyBody != null ? MyBody.linearVelocity : Vector2.zero;
+        var prevGravity = MyBody != null ? MyBody.gravityScale : 1f;
+
+        SetCombatState(CharacterState.CombatState.Hitstun);
+
+        float t = 0f;
+        while (t < durationSeconds) {
+            if (anim != null) anim.speed = 1f;
+
+            if (MyBody != null) {
+                MyBody.linearVelocity = Vector2.zero;
+                MyBody.gravityScale = 0f;
+            }
+
+            t += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (anim != null) anim.speed = prevAnimSpeed;
+
+        if (MyBody != null) {
+            MyBody.gravityScale = prevGravity;
+            MyBody.linearVelocity = prevVelocity;
+        }
+
+        // Only revert if nobody else changed it during hitstun
+        if (state.currentCombatState == CharacterState.CombatState.Hitstun)
+            SetCombatState(prevCombatState);
+
+        _hitstunCoroutine = null;
+    }
+
+    protected float FramesToSeconds(int frames) {
+        if (frames <= 0) return 0f;
+        return frames / CombatManager.COMBAT_FPS;
     }
 }

@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: AirKick
+  attackName: 
   startsACombo: 1
   canBeCancelled: 1
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 1
+  playerHitLagFrames: 8
+  enemyHitLagFrames: 8
   playerHitLag: 25
   damage: 2
   attackInputName:
@@ -25,7 +29,6 @@ MonoBehaviour:
   prevAttack: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 62fbd9714a019cd4a87e17ce2dbd4170, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: 7639dfc1383d1334e82098f090d85680, type: 2}
   - {fileID: 11400000, guid: 762cda650d016504d8c34760099d9623, type: 2}
   hit: 0
   active: 0

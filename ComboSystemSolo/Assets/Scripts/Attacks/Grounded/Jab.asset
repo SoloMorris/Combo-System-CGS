@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: Jab
+  attackName: 
   startsACombo: 1
+  canBeCancelled: 0
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 0
+  playerHitLagFrames: 4
+  enemyHitLagFrames: 8
   playerHitLag: 5
   damage: 1
   attackInputName:
@@ -24,7 +29,6 @@ MonoBehaviour:
   prevAttack: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: d4fdf011a5687c7469794f6e21131d8c, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: 2d713bcdcd25afa499423d70bbcfcb0f, type: 2}
   - {fileID: 11400000, guid: 99b77a116efa66141aff16a8a3778ecd, type: 2}
   hit: 0
   active: 0

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
@@ -6,6 +6,10 @@ using UnityEngine;
 public class PlayerMovement : PlayerComponent
 {
     public Vector2 MovementDirection;
+
+    [Header("Facing")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float facingDeadzone = 0.1f;
 
     //  Jumping
     public bool grounded;
@@ -22,6 +26,9 @@ public class PlayerMovement : PlayerComponent
     private void Start()
     {
         AssignComponents();
+
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -48,6 +55,18 @@ public class PlayerMovement : PlayerComponent
     public void UpdateDirection(Vector2 newDirection)
     {
         MovementDirection = newDirection;
+        UpdateFacingFromInput(newDirection.x);
+    }
+
+    private void UpdateFacingFromInput(float x)
+    {
+        if (spriteRenderer == null)
+            return;
+
+        if (x > facingDeadzone)
+            spriteRenderer.flipX = false;
+        else if (x < -facingDeadzone)
+            spriteRenderer.flipX = true;
     }
 
     private bool CanMove()

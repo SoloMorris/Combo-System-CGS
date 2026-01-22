@@ -14,16 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 2
-  name: Double_Jab
+  attackName: 
   startsACombo: 0
+  canBeCancelled: 0
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 0
+  playerHitLagFrames: 4
+  enemyHitLagFrames: 8
   playerHitLag: 25
   damage: 4
   attackInputName:
   - Light
   prevAttack: {fileID: 11400000, guid: 8a8ddd6e5c23a904c99565d3d5fb11aa, type: 2}
   attackAnimation: {fileID: 7400000, guid: 61cbb16c1108e8c4cba4bb40fc86c884, type: 2}
-  attachedEffects:
-  - {fileID: 11400000, guid: dff25b50eca757e4bb6b2bb648e8eaec, type: 2}
+  attachedEffects: []
   hit: 0
   active: 0

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,16 +7,20 @@ using UnityEngine.InputSystem;
 public class Effect : ScriptableObject
 {
     // Effects are NON-GENERIC things that happen to an actor once hit by an attack with said effect applied
-    // i.e Launch effect will apply knockbackDirection (upwards Force) 
+    // i.e Launch effect will apply knockbackDirection (upwards Force)
 
     /// <summary>
     /// // CMB = Combo or something lol
     /// </summary>
-    public string effectTag; 
+    public string effectTag;
+
     /// <summary>
-    /// //Length of effect. If 0, effect is instant.
+    /// Length of effect. If 0, treat as instant.
+    /// Runtime state should live in EffectInstance (NOT on this ScriptableObject).
     /// </summary>
-    public float effectDuration; 
+    public float effectDuration;
+
+    // NOTE: These fields/methods are legacy. Prefer EffectInstance.timer/flags.
     [HideInInspector] public float timer;
 
     /// <summary>
@@ -88,6 +92,8 @@ public class Effect : ScriptableObject
     /// </summary>
     [HideInInspector] public int timesApplied;
 
+    // Legacy runtime mutation API (kept to avoid breaking old calls if any remain).
+    // New code should not use these.
     public void Reset()
     {
         timer = 0f;
@@ -95,6 +101,7 @@ public class Effect : ScriptableObject
         instantDamageApplied = false;
         instantKnockbackApplied = false;
     }
+
     public void TickEffect()
     {
         timer += Time.deltaTime;
@@ -108,27 +115,25 @@ public class Effect : ScriptableObject
 
 
 }
-public class EffectInstance 
+public class EffectInstance
 {
-    public Effect effectData;
+    public readonly Effect effectData;
+
+    // Per-application runtime state
     public float timer;
-    public int timesApplied;
     public bool instantDamageApplied;
     public bool instantKnockbackApplied;
 
-    public EffectInstance(Effect data) {
+    public EffectInstance(Effect data)
+    {
         effectData = data;
-        Reset();
-    }
-
-    public void Reset() {
         timer = 0f;
-        timesApplied = 0;
         instantDamageApplied = false;
         instantKnockbackApplied = false;
     }
 
-    public void Tick() {
+    public void Tick()
+    {
         timer += Time.deltaTime;
     }
 }

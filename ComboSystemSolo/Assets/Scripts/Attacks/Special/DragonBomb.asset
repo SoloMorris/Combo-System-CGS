@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: Dragon Bomb
+  attackName: 
   startsACombo: 1
   canBeCancelled: 0
   playVfxOnHit: 1
   vfx: {fileID: 6264049238173414578, guid: 2887f8e9092365e41ac50e7818c0f5e2, type: 3}
   aerialMove: 0
+  playerHitLagFrames: 8
+  enemyHitLagFrames: 20
   playerHitLag: 50
   damage: 100
   attackInputName:

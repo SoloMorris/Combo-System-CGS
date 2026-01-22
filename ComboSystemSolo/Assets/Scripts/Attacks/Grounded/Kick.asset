@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: Kick
+  attackName: 
   startsACombo: 1
   canBeCancelled: 0
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 0
+  playerHitLagFrames: 4
+  enemyHitLagFrames: 16
   playerHitLag: 15
   damage: 4
   attackInputName:
@@ -25,7 +29,6 @@ MonoBehaviour:
   prevAttack: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 21eb817e864c506468270c8352d814d4, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: fa647c6674e506d4c8fab8c15d24116c, type: 2}
   - {fileID: 11400000, guid: 427d87b96a91cc04ca27408cad611052, type: 2}
   hit: 0
   active: 0

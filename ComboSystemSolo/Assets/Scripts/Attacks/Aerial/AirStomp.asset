@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 1
   timesCanHit: 1
-  name: AirStomp
+  attackName: 
   startsACombo: 1
+  canBeCancelled: 0
+  playVfxOnHit: 0
+  vfx: {fileID: 0}
   aerialMove: 1
+  playerHitLagFrames: 24
+  enemyHitLagFrames: 24
   playerHitLag: 10
   damage: 3
   attackInputName:
@@ -24,7 +29,6 @@ MonoBehaviour:
   prevAttack: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: a06e0c7c81cddb34885f8bf6b55dfa71, type: 2}
   attachedEffects:
-  - {fileID: 11400000, guid: ca228303ab9aeb143adededd03c021c3, type: 2}
   - {fileID: 11400000, guid: 48823ca22ec38f84d8dfc0144e523d1b, type: 2}
   hit: 0
   active: 0

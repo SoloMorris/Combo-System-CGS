@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Uppercut-KB
   m_EditorClassIdentifier: 
   effectTag: KB
-  effectDuration: 0.85
+  effectDuration: 0
   timer: 0
   targetTag: Enemy
   applyCondition: 0
@@ -24,12 +24,12 @@ MonoBehaviour:
   damageInstant: 1
   instantDamageApplied: 0
   knockbackDirection: {x: 0, y: 1}
-  knockbackDist: 3
+  knockbackDist: 4
   knockbackInstant: 1
   instantKnockbackApplied: 0
   forceState: 0
   ForcedState: 0
-  forceMovementState: 1
+  forceMovementState: 0
   ForcedMovementState: 3
   returnAfterEnd: 0
   timesCanBeApplied: 1
